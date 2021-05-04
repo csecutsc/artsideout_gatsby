@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `ARTSIDEOUT`,
+    description: `ARTSIDEOUT ENDURANCE: UTSC's largest one-day multidisciplinary arts festival`,
+    author: `CSEC`
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -11,11 +11,16 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
-        path: `${__dirname}/src/images`,
-      },
+        path: `${__dirname}/src/images`
+      }
     },
     `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-plugin-sharp`,
+      options: {
+        failOnError: false
+      }
+    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -25,12 +30,30 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
-      },
+        icon: `src/images/gatsby-icon.png` // This path is relative to the root of the site.
+      }
     },
-    `gatsby-plugin-gatsby-cloud`,
+    {
+      resolve: `gatsby-plugin-typescript`,
+      options: {
+        isTSX: true, // defaults to false
+        jsxPragma: `jsx`, // defaults to "React"
+        allExtensions: true // defaults to false
+      }
+    },
+    {
+      resolve: 'gatsby-source-graphcms',
+      options: {
+        // Your GraphCMS API endpoint. Available from your project settings.
+        endpoint:
+          'https://api-us-east-1.graphcms.com/v2/ckjv3ugbcod9j01z1hvndcrdh/master',
+        downloadLocalImages: true,
+        buildMarkdownNodes: true
+      }
+    },
+    '@chakra-ui/gatsby-plugin'
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
-  ],
-}
+  ]
+};

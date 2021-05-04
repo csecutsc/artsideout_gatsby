@@ -7,7 +7,8 @@ import Seo from "../components/seo"
 
 type DataProps = {
   site: {
-    buildTime: string
+    buildTime: string,
+    id: string
   }
 }
 
@@ -29,6 +30,10 @@ const UsingTypescript: React.FC<PageProps<DataProps>> = ({ data, path }) => (
       {data.site.buildTime}.
     </p>
     <p>
+      You're currently on the page "{path}" which was built on{" "}
+      {data.site.id}.
+    </p>
+    <p>
       To learn more, head over to our{" "}
       <a href="https://www.gatsbyjs.com/docs/typescript/">
         documentation about TypeScript
@@ -45,6 +50,7 @@ export const query = graphql`
   {
     site {
       buildTime(formatString: "YYYY-MM-DD hh:mm a z")
+      id
     }
   }
 `

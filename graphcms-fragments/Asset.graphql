@@ -1,0 +1,93 @@
+fragment Asset on Asset {
+  stage
+  locale
+  remoteId: id
+  createdAt(variation: COMBINED)
+  createdBy {
+    ... on User {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  updatedAt(variation: COMBINED)
+  updatedBy {
+    ... on User {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  publishedAt(variation: COMBINED)
+  publishedBy {
+    ... on User {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  handle
+  fileName
+  height
+  width
+  size
+  mimeType
+  altText
+  profileProfilePic {
+    ... on Profile {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  imagesInstallation {
+    ... on Installation {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  imagesPerformance {
+    ... on Performance {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  announcementImage {
+    ... on Announcement {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  artMarketVendorImages {
+    ... on ArtMarketVendor {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  projectImage {
+    ... on Project {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  filesInstallation {
+    ... on Installation {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  filesPerformance {
+    ... on Performance {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  url
+}

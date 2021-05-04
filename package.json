@@ -1,18 +1,29 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "artsideout",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "UTSC's Largest One-Day Art Festival",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Computer Science Enrichment Club",
   "dependencies": {
+    "@capacitor/android": "^3.0.0-rc.1",
+    "@capacitor/cli": "^3.0.0-rc.1",
+    "@capacitor/core": "^3.0.0-rc.1",
+    "@capacitor/ios": "^3.0.0-rc.1",
+    "@chakra-ui/gatsby-plugin": "^2.0.0",
+    "@chakra-ui/icons": "^1.0.12",
+    "@chakra-ui/react": "^1.6.0",
+    "@emotion/react": "^11.1.5",
+    "@emotion/styled": "^11.3.0",
+    "framer-motion": "^4.1.11",
     "gatsby": "^3.3.1",
-    "gatsby-plugin-gatsby-cloud": "^2.2.0",
     "gatsby-plugin-image": "^1.2.1",
     "gatsby-plugin-manifest": "^3.2.0",
+    "gatsby-plugin-netlify": "^3.4.0",
     "gatsby-plugin-offline": "^4.2.0",
     "gatsby-plugin-react-helmet": "^4.2.0",
     "gatsby-plugin-sharp": "^3.2.1",
     "gatsby-source-filesystem": "^3.2.0",
+    "gatsby-source-graphcms": "^2.5.2",
     "gatsby-transformer-sharp": "^3.2.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
@@ -20,7 +31,11 @@
     "react-helmet": "^6.1.0"
   },
   "devDependencies": {
-    "prettier": "2.2.1"
+    "@types/node": "^14.14.41",
+    "@types/react": "^17.0.3",
+    "@types/react-dom": "^17.0.3",
+    "prettier": "2.2.1",
+    "typescript": "^4.2.4"
   },
   "keywords": [
     "gatsby"
@@ -28,18 +43,13 @@
   "license": "0BSD",
   "scripts": {
     "build": "gatsby build",
+    "start:android": "npm run build && npx cap copy android && npx cap open android",
+    "start:ios": "npm run build && npx cap copy ios && npx cap open ios",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
-  },
-  "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
   }
 }

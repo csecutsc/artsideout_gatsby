@@ -1,0 +1,13 @@
+{
+  "appId": "com.csec.artsideout",
+  "appName": "artsideout_app",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "public",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {}
+}

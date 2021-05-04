@@ -1,0 +1,38 @@
+fragment ZoomMeeting on ZoomMeeting {
+  stage
+  remoteId: id
+  createdAt
+  createdBy {
+    ... on User {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  updatedAt
+  updatedBy {
+    ... on User {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  publishedAt
+  publishedBy {
+    ... on User {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  meetingUrl
+  meetingId
+  meetingPass
+  performance {
+    ... on Performance {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+}

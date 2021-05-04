@@ -1,0 +1,79 @@
+fragment Performance on Performance {
+  stage
+  remoteId: id
+  createdAt
+  createdBy {
+    ... on User {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  updatedAt
+  updatedBy {
+    ... on User {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  publishedAt
+  publishedBy {
+    ... on User {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  title
+  description
+  performanceType
+  featured
+  images {
+    ... on Asset {
+      remoteTypeName: __typename
+      remoteId: id
+      locale
+      stage
+    }
+  }
+  files {
+    ... on Asset {
+      remoteTypeName: __typename
+      remoteId: id
+      locale
+      stage
+    }
+  }
+  profile {
+    ... on Profile {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  videoUrl
+  startTime
+  endTime
+  zoomMeeting {
+    ... on ZoomMeeting {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  project {
+    ... on Project {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  location {
+    ... on Location {
+      latitude
+      longitude
+    }
+  }
+  locationRoom
+}

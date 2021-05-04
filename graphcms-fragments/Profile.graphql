@@ -1,0 +1,67 @@
+fragment Profile on Profile {
+  stage
+  remoteId: id
+  createdAt
+  createdBy {
+    ... on User {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  updatedAt
+  updatedBy {
+    ... on User {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  publishedAt
+  publishedBy {
+    ... on User {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  name
+  type
+  description
+  image {
+    ... on Asset {
+      remoteTypeName: __typename
+      remoteId: id
+      locale
+      stage
+    }
+  }
+  installations {
+    ... on Installation {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  performances {
+    ... on Performance {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  project {
+    ... on Project {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  artMarketVendor {
+    ... on ArtMarketVendor {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+}
