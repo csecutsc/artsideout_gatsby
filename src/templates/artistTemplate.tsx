@@ -1,24 +1,21 @@
 import * as React from 'react';
-import { graphql, Link, useStaticQuery, navigate } from 'gatsby';
-import { GatsbyImage, StaticImage } from 'gatsby-plugin-image';
+import { graphql, navigate } from 'gatsby';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
-import {
-  Box,
-  SimpleGrid,
-  Stack,
-  Text,
-  Image,
-  Img,
-  Heading,
-  Container
-} from '@chakra-ui/react';
+import { SimpleGrid, Text, Heading } from '@chakra-ui/react';
 
 import Layout from '../components/layout';
 import Seo from '../components/seo';
 import PropTypes from 'prop-types';
+import { ProfileType } from '../types/PrimaryTypes';
 
-const ArtistTemplate = ({ data }) => {
-  console.log(data.artist);
+interface PropType {
+  data: {
+    artist: ProfileType;
+  };
+}
+
+const ArtistTemplate = ({ data }: PropType) => {
   if (data.artist === null) {
     navigate('/404');
     return null;
@@ -45,7 +42,7 @@ const ArtistTemplate = ({ data }) => {
         lineHeight={1.5}
         textAlign={['center', 'center', 'left', 'left']}
       >
-        <MDXRenderer as={Container}>
+        <MDXRenderer>
           {data.artist.description.markdownNode.childMdx.body}
         </MDXRenderer>
       </Heading>
@@ -119,5 +116,9 @@ export const data: any = graphql`
     }
   }
 `;
+
+ArtistTemplate.propTypes = {
+  data: PropTypes.node.isRequired
+};
 
 export default ArtistTemplate;

@@ -1,13 +1,13 @@
-import { Avatar, Box, Stack, Text, useColorModeValue } from '@chakra-ui/react';
 import React from 'react';
+import { Avatar, Box, Stack, Text, useColorModeValue } from '@chakra-ui/react';
 
 import PropTypes from 'prop-types';
 
-interface SponsorsProp {
+interface EventsProp {
   data?: any;
 }
 
-const Sponsors = ({ data }: SponsorsProp) => {
+const Events = ({ data }: EventsProp) => {
   return (
     <Stack
       bg={useColorModeValue('gray.50', 'gray.800')}
@@ -45,8 +45,8 @@ const Sponsors = ({ data }: SponsorsProp) => {
   );
 };
 
-Sponsors.propTypes = {
+Events.propTypes = {
   data: PropTypes.node.isRequired
 };
 
-export default Sponsors;
+export default Events;

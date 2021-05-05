@@ -7,11 +7,8 @@
 
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useStaticQuery, graphql } from 'gatsby';
-import { Box, ChakraProvider, Container, Flex, Text } from '@chakra-ui/react';
-import Header from './navbar';
-import Footer from './footer';
-import ArtsideoutTheme from './theme';
+import { ChakraProvider, Container } from '@chakra-ui/react';
+import { Navbar, Footer, ASOTheme } from './global';
 
 interface LayoutProps {
   children?: any;
@@ -37,8 +34,8 @@ const Layout = ({ children }: LayoutProps) => {
   // `)
 
   return (
-    <ChakraProvider theme={ArtsideoutTheme}>
-      <Header />
+    <ChakraProvider theme={ASOTheme}>
+      <Navbar />
       <Container maxW={'7xl'} minH="70vh" flex={'1 0 auto'} py={8} mt={5}>
         {children}
       </Container>

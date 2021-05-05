@@ -1,24 +1,29 @@
-import React, { ReactNode } from 'react';
-import { Box, Button, Flex, Heading, Stack } from '@chakra-ui/react';
-import { Link } from 'gatsby';
+import React from 'react';
+import { Box, Button, Flex, Heading, Link, Stack } from '@chakra-ui/react';
+import { Link as GatsbyLink } from 'gatsby';
 import { StaticImage } from 'gatsby-plugin-image';
 
-import ReactLogo from '../../images/Liquid-Cheese.svg';
-
-const Logo = (props: any) => {
-  return <img src={ReactLogo} alt="React Logo" {...props} />;
-};
+import BackgroundHero from '../../images/hero_bg.svg';
 
 const Hero = () => {
   return (
-    <Box bgImage="url('../../images/Liquid-Cheese.svg')">
+    <Box
+      style={{
+        borderRadius: '30px',
+        backgroundImage: `url(${BackgroundHero})`,
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: '100%',
+        backgroundPosition: 'center'
+      }}
+      height={'50vh'}
+    >
       <Flex
         align="center"
         justify={{ base: 'center', md: 'space-around', xl: 'space-between' }}
         direction={{ base: 'column-reverse', md: 'row' }}
         px={8}
         mb={16}
-        height={'40vh'}
+        height={'50vh'}
       >
         <Stack
           spacing={4}
@@ -45,7 +50,7 @@ const Hero = () => {
             “ENDURANCE” is the ability to resist through and recover from
             adversity.
           </Heading>
-          <Link to="/installations">
+          <Link as={GatsbyLink} to="/installations">
             <Button
               colorScheme="primary"
               borderRadius="8px"
@@ -58,6 +63,9 @@ const Hero = () => {
             </Button>
           </Link>
         </Stack>
+        <Box w={{ base: '60%', sm: '50%', md: '40%' }} mb={{ base: 12, md: 0 }}>
+          <StaticImage src="../../images/aso_logo.jpg" alt="" />
+        </Box>
       </Flex>
     </Box>
   );

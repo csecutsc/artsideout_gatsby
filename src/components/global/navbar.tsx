@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import {
   Box,
   Flex,
@@ -11,14 +11,14 @@ import {
   useDisclosure,
   IconButton,
   Container,
-  ScaleFade,
-  Fade
+  Fade,
+  Heading
 } from '@chakra-ui/react';
-import { Link } from 'gatsby';
+import { Link as GatsbyLink } from 'gatsby';
 import { CloseIcon, HamburgerIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
-import { NavLinks } from './constants/routes';
+import { NavLinks } from '../constants/routes';
 
-const Header = () => {
+const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -34,13 +34,18 @@ const Header = () => {
           justify="space-between"
           wrap="wrap"
           w="100%"
-          mb={8}
           p={8}
         >
           <Flex align="center">
-            <Text fontWeight={'500'} fontSize={'lg'} mb={2}>
-              ART
-            </Text>
+            <Heading
+              as={Text}
+              size="lg"
+              fontWeight="bold"
+              color="pink.400"
+              textAlign={['center', 'center', 'left', 'left']}
+            >
+              ARTSIDEOUT
+            </Heading>
           </Flex>
 
           <IconButton
@@ -67,23 +72,20 @@ const Header = () => {
                 display={{ base: 'none', md: 'flex' }}
               >
                 {NavLinks.map(({ name, route }) => (
-                  <Link to={route}>
+                  <GatsbyLink to={route}>
                     <Button
+                      variant="ghost"
                       rounded={'full'}
                       size="sm"
-                      color={['primary.500', 'primary.500', 'white', 'white']}
+                      color={useColorModeValue('gray.700', 'gray.200')}
                       _hover={{
-                        bg: [
-                          'primary.100',
-                          'primary.100',
-                          'primary.600',
-                          'primary.600'
-                        ]
+                        color: 'white',
+                        bg: 'pink.400'
                       }}
                     >
                       {name}
                     </Button>
-                  </Link>
+                  </GatsbyLink>
                 ))}
                 <Button rounded={'full'} size="sm" onClick={toggleColorMode}>
                   {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
@@ -95,28 +97,20 @@ const Header = () => {
                 <Box pb={4}>
                   <Stack as={'nav'} spacing={4}>
                     {NavLinks.map(({ name, route }) => (
-                      <Link to={route}>
+                      <GatsbyLink to={route}>
                         <Button
+                          variant="ghost"
                           rounded={'full'}
                           size="sm"
-                          color={[
-                            'primary.500',
-                            'primary.500',
-                            'white',
-                            'white'
-                          ]}
+                          color={useColorModeValue('gray.700', 'gray.200')}
                           _hover={{
-                            bg: [
-                              'primary.100',
-                              'primary.100',
-                              'primary.600',
-                              'primary.600'
-                            ]
+                            color: 'white',
+                            bg: 'pink.400'
                           }}
                         >
                           {name}
                         </Button>
-                      </Link>
+                      </GatsbyLink>
                     ))}
                   </Stack>
                 </Box>
@@ -129,4 +123,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Navbar;

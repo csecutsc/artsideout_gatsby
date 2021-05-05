@@ -1,23 +1,21 @@
 import * as React from 'react';
-import { graphql, Link, useStaticQuery, navigate } from 'gatsby';
-import { GatsbyImage, StaticImage } from 'gatsby-plugin-image';
+import { graphql, navigate } from 'gatsby';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
-import {
-  Box,
-  SimpleGrid,
-  Stack,
-  Text,
-  Image,
-  Img,
-  Heading,
-  Container
-} from '@chakra-ui/react';
+import { SimpleGrid, Text, Heading } from '@chakra-ui/react';
 
 import Layout from '../components/layout';
 import Seo from '../components/seo';
 import PropTypes from 'prop-types';
+import { InstallationType } from '../types/PrimaryTypes';
 
-const InstallationTemplate = ({ data }) => {
+interface PropType {
+  data: {
+    installation: InstallationType;
+  };
+}
+
+const InstallationTemplate = ({ data }: PropType) => {
   console.log(data);
   if (data.installation === null) {
     navigate('/404');
@@ -45,13 +43,12 @@ const InstallationTemplate = ({ data }) => {
         lineHeight={1.5}
         textAlign={['center', 'center', 'left', 'left']}
       >
-        {/* {data.installation.nodes.markdownNode.childMdx.body} */}
-        <MDXRenderer as={Container}>
+        <MDXRenderer>
           {data.installation.description.markdownNode.childMdx.body}
         </MDXRenderer>
       </Heading>
 
-      <SimpleGrid columns={[2, null, 3]} autoFlow="row dense">
+      <SimpleGrid columns={[2, null, 3]}>
         {data.installation.images.map((image: any, i: number) => (
           <GatsbyImage
             key={i}
@@ -83,5 +80,9 @@ export const data: any = graphql`
     }
   }
 `;
+
+InstallationTemplate.propTypes = {
+  data: PropTypes.node.isRequired
+};
 
 export default InstallationTemplate;

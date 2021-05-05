@@ -12,21 +12,10 @@
 //     </div>
 //   );
 // }
-import * as React from 'react';
-import { graphql, Link, useStaticQuery } from 'gatsby';
-import { GatsbyImage, StaticImage } from 'gatsby-plugin-image';
-import {
-  Box,
-  SimpleGrid,
-  Stack,
-  Text,
-  Image,
-  Img,
-  Heading
-} from '@chakra-ui/react';
+import React from 'react';
+import { Text, Heading } from '@chakra-ui/react';
 
-import Layout from '../components/layout';
-import Seo from '../components/seo';
+import { Layout, Seo } from '../components';
 
 const MapPage = () => {
   return (

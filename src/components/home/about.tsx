@@ -1,13 +1,13 @@
-import { Avatar, Box, Stack, Text, useColorModeValue } from '@chakra-ui/react';
 import React from 'react';
+import { Avatar, Box, Stack, Text, useColorModeValue } from '@chakra-ui/react';
 
 import PropTypes from 'prop-types';
 
-interface SponsorsProp {
-  data?: any;
+interface AboutProp {
+  description?: any;
 }
 
-const Sponsors = ({ data }: SponsorsProp) => {
+const About = ({ description }: AboutProp) => {
   return (
     <Stack
       bg={useColorModeValue('gray.50', 'gray.800')}
@@ -22,10 +22,7 @@ const Sponsors = ({ data }: SponsorsProp) => {
         textAlign={'center'}
         maxW={'3xl'}
       >
-        We had an incredible experience working with Chakra Templates and were
-        impressed they made such a big difference in only three weeks. Our team
-        is so grateful for the wonderful improvements they made and their
-        ability to get familiar with the product concept so quickly.
+        {description}
       </Text>
       <Box textAlign={'center'}>
         <Avatar
@@ -45,8 +42,8 @@ const Sponsors = ({ data }: SponsorsProp) => {
   );
 };
 
-Sponsors.propTypes = {
+About.propTypes = {
   data: PropTypes.node.isRequired
 };
 
-export default Sponsors;
+export default About;

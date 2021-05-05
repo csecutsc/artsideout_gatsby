@@ -13,6 +13,19 @@ const NavLinks: Routes[] = [
   { name: '404', route: '/404' }
 ];
 
+const FestivalLinks: Routes[] = [
+  { name: 'Special Projects', route: '/installations' },
+  { name: 'Installations', route: '/installations' },
+  { name: 'Performances', route: '/performances' },
+  { name: 'Activities', route: '/performances' }
+];
+
+const AdditionalLinks: Routes[] = [
+  { name: 'Artists', route: '/artists' },
+  { name: 'Team', route: '/team' },
+  { name: 'Map', route: '/map' }
+];
+
 const SocialLinks: Routes[] = [
   { name: 'Instagram', route: 'https://www.instagram.com/artsideout_/' },
   { name: 'Facebook', route: 'https://www.facebook.com/ARTSIDEOUT/' },
@@ -21,4 +34,4 @@ const SocialLinks: Routes[] = [
   { name: 'CSEC Website', route: 'https://csec.club' }
 ];
 
-export { NavLinks, SocialLinks };
+export { NavLinks, FestivalLinks, AdditionalLinks, SocialLinks };

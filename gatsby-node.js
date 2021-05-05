@@ -7,34 +7,38 @@
 // You can delete this file if you're not using it
 
 const path = require(`path`);
+const slugify = require(`slugify`);
+var { CreateFriendlyUrl } = require('./src/helpers');
 
 exports.createPages = async ({ graphql, actions }) => {
   const result = await graphql(`
     query CreatePages {
       installation: allGraphCmsInstallation {
         nodes {
+          title
           remoteId
         }
       }
       artist: allGraphCmsProfile {
         nodes {
+          name
           remoteId
         }
       }
     }
   `);
-  result.data.installation.nodes.forEach((node) => {
+  result.data.installation.nodes.forEach(({ title, remoteId }) => {
     actions.createPage({
-      path: '/installation/' + node.remoteId,
-      component: path.resolve('./src/templates/installation.tsx'),
-      context: { id: node.remoteId }
+      path: `/installation/${CreateFriendlyUrl(title, remoteId)}`,
+      component: path.resolve('./src/templates/installationTemplate.tsx'),
+      context: { id: remoteId }
     });
   });
-  result.data.artist.nodes.forEach((node) => {
+  result.data.artist.nodes.forEach(({ name, remoteId }) => {
     actions.createPage({
-      path: '/artist/' + node.remoteId,
-      component: path.resolve('./src/templates/artist.tsx'),
-      context: { id: node.remoteId }
+      path: `/artist/${CreateFriendlyUrl(name, remoteId)}`,
+      component: path.resolve('./src/templates/artistTemplate.tsx'),
+      context: { id: remoteId }
     });
   });
 };

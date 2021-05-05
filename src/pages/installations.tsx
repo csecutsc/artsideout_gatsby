@@ -1,29 +1,10 @@
-import * as React from 'react';
-import { graphql, Link, useStaticQuery } from 'gatsby';
-import { GatsbyImage, StaticImage } from 'gatsby-plugin-image';
-import {
-  Box,
-  SimpleGrid,
-  Stack,
-  Text,
-  Image,
-  Img,
-  Heading
-} from '@chakra-ui/react';
+import React from 'react';
+import { graphql, Link as GatsbyLink, useStaticQuery } from 'gatsby';
+import { GatsbyImage } from 'gatsby-plugin-image';
+import { SimpleGrid, Text, Heading, Center, Link } from '@chakra-ui/react';
 
-import Layout from '../components/layout';
-import Seo from '../components/seo';
-import Profile from '../components/profile';
-
-interface InstallationData {
-  allGraphCmsInstallation: {
-    nodes: {
-      description: string;
-      id: string;
-      images: [];
-    };
-  };
-}
+import { Layout, Seo } from '../components';
+import { CreateFriendlyUrl } from '../helpers';
 
 const InstallationPage = () => {
   const data: any = useStaticQuery(graphql`
@@ -33,7 +14,10 @@ const InstallationPage = () => {
           remoteId
           title
           images {
-            gatsbyImageData(width: 300, placeholder: BLURRED, quality: 20)
+            gatsbyImageData(width: 250, placeholder: BLURRED, quality: 20)
+          }
+          profiles {
+            name
           }
         }
       }
@@ -86,18 +70,42 @@ const InstallationPage = () => {
         In thinking of “Endurance”, artists create a diverse body of works.
         Click on an installation to learn more!
       </Heading>
-      <SimpleGrid columns={[2, null, 3]} autoFlow="row dense">
+      <SimpleGrid columns={[2, null, 4]} spacing={2}>
         {data.installations.nodes.map((data: any, i: number) => (
-          <Link to={`/installation/${data.remoteId}`}>
-            <section className="gallery__section" key={i}>
-              <h2 className="gallery__section-title">{data.title}</h2>
+          <Center>
+            <Link
+              as={GatsbyLink}
+              to={`/installation/${CreateFriendlyUrl(
+                data.title,
+                data.remoteId
+              )}`}
+            >
               <GatsbyImage
                 objectFit="cover"
                 image={data.images[0] ? data.images[0].gatsbyImageData : ''}
-                alt={data.images[0] ? data.images[0].altText : ''}
+                alt={data.images[0] ? data.images[0].altText : data.title}
               />
-            </section>
-          </Link>
+              <Heading
+                as="h3"
+                size="md"
+                color="primary.800"
+                fontWeight="bold"
+                lineHeight={1.5}
+                textAlign={['center', 'center', 'left', 'left']}
+              >
+                {data.title}
+              </Heading>
+              {data.profiles.map((data: any, i: number) => (
+                <Text
+                  size="md"
+                  color="primary.800"
+                  textAlign={['center', 'center', 'left', 'left']}
+                >
+                  {data.name}
+                </Text>
+              ))}
+            </Link>
+          </Center>
         ))}
       </SimpleGrid>
     </Layout>
