@@ -5,7 +5,7 @@ module.exports = {
     return slugify(`${text}-${uid}`, {
       replacement: '-', // replace spaces with replacement character, defaults to `-`
       lower: true,
-      remove: /[*+~.()'"!:@]/g
+      remove: /[*+~.()'"!:@#?]/g
     });
   }
 };
