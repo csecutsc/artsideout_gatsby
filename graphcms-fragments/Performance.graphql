@@ -26,7 +26,14 @@ fragment Performance on Performance {
     }
   }
   title
-  description
+  description {
+    ... on RichText {
+      raw
+      html
+      markdown
+      text
+    }
+  }
   performanceType
   featured
   images {

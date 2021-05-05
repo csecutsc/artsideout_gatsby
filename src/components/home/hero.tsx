@@ -1,31 +1,24 @@
-import * as React from 'react';
+import React, { ReactNode } from 'react';
+import { Box, Button, Flex, Heading, Stack } from '@chakra-ui/react';
 import { Link } from 'gatsby';
 import { StaticImage } from 'gatsby-plugin-image';
-import {
-  Box,
-  Stack,
-  Text,
-  Flex,
-  Heading,
-  Button,
-  useColorModeValue
-} from '@chakra-ui/react';
 
-import Layout from '../components/layout';
-import Seo from '../components/seo';
-import Hero from '../components/home/hero';
+import ReactLogo from '../../images/Liquid-Cheese.svg';
 
-const IndexPage = () => {
+const Logo = (props: any) => {
+  return <img src={ReactLogo} alt="React Logo" {...props} />;
+};
+
+const Hero = () => {
   return (
-    <Layout>
-      <Seo title="Home" />
-      <Hero />
+    <Box bgImage="url('../../images/Liquid-Cheese.svg')">
       <Flex
         align="center"
         justify={{ base: 'center', md: 'space-around', xl: 'space-between' }}
         direction={{ base: 'column-reverse', md: 'row' }}
         px={8}
         mb={16}
+        height={'40vh'}
       >
         <Stack
           spacing={4}
@@ -33,7 +26,6 @@ const IndexPage = () => {
           align={['center', 'center', 'flex-start', 'flex-start']}
         >
           <Heading
-            as={Text}
             size="2xl"
             fontWeight="bold"
             color="pink.400"
@@ -66,12 +58,9 @@ const IndexPage = () => {
             </Button>
           </Link>
         </Stack>
-        <Box w={{ base: '60%', sm: '50%', md: '40%' }} mb={{ base: 12, md: 0 }}>
-          <StaticImage src="../images/gatsby-astronaut.png" alt="" />
-        </Box>
       </Flex>
-    </Layout>
+    </Box>
   );
 };
 
-export default IndexPage;
+export default Hero;

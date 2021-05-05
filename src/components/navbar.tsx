@@ -1,110 +1,132 @@
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import {
-    Box,
-    Flex,
-    Avatar,
-    HStack,
-    Link,
-    IconButton,
-    Button,
-    Menu,
-    MenuButton,
-    MenuList,
-    MenuItem,
-    MenuDivider,
-    useDisclosure,
-    useColorMode,
-    useColorModeValue,
-    Stack,
-    Container,
+  Box,
+  Flex,
+  Text,
+  Button,
+  Stack,
+  useColorMode,
+  useColorModeValue,
+  HStack,
+  useDisclosure,
+  IconButton,
+  Container,
+  ScaleFade,
+  Fade
 } from '@chakra-ui/react';
-import { HamburgerIcon, CloseIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
-import React from 'react';
+import { Link } from 'gatsby';
+import { CloseIcon, HamburgerIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
+import { NavLinks } from './constants/routes';
 
-const Links = ['Dashboard', 'Projects', 'Team'];
+const Header = () => {
+  const { colorMode, toggleColorMode } = useColorMode();
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
-const NavLink = ({ children }: { children: ReactNode }) => (
-    <Link
-        px={2}
-        py={1}
-        rounded={'md'}
-        _hover={{
-            textDecoration: 'none',
-            bg: useColorModeValue('gray.200', 'gray.700'),
-        }}
-        href={'#'}>
-        {children}
-    </Link>
-);
+  return (
+    <Box
+      bg={useColorModeValue('gray.50', 'gray.900')}
+      color={useColorModeValue('gray.700', 'gray.200')}
+    >
+      <Container maxW={'7xl'} py={0}>
+        <Flex
+          as="nav"
+          align="center"
+          justify="space-between"
+          wrap="wrap"
+          w="100%"
+          mb={8}
+          p={8}
+        >
+          <Flex align="center">
+            <Text fontWeight={'500'} fontSize={'lg'} mb={2}>
+              ART
+            </Text>
+          </Flex>
 
-export default function Simple() {
-    const { isOpen, onOpen, onClose } = useDisclosure();
-    const { colorMode, toggleColorMode } = useColorMode();
+          <IconButton
+            size={'md'}
+            icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
+            aria-label={'Open Menu'}
+            display={{ md: !isOpen ? 'none' : 'inherit' }}
+            onClick={isOpen ? onClose : onOpen}
+          />
 
-    return (
-        <Box mb={4}
-            p={4} bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
-            <Container maxW={'7xl'} py={0}>
-                <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
-                    <IconButton
-                        size={'md'}
-                        icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-                        aria-label={'Open Menu'}
-                        display={{ md: !isOpen ? 'none' : 'inherit' }}
-                        onClick={isOpen ? onClose : onOpen}
-                    />
-                    <HStack spacing={8} alignItems={'left'}>
-                        <h2>ARTSIDEOUT</h2>
-                        <HStack
-                            as={'nav'}
-                            spacing={4}
-                            display={{ base: 'none', md: 'flex' }}>
-                            {Links.map((link) => (
-                                <NavLink key={link}>{link}</NavLink>
-                            ))}
-                        </HStack>
-                    </HStack>
-                    <Flex alignItems={'center'}>
-                        <Menu>
-                            <MenuButton
-                                as={Button}
-                                rounded={'full'}
-                                variant={'link'}
-                                cursor={'pointer'}
-                                onClick={toggleColorMode}>
-                                {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
-                            </MenuButton>
-                        </Menu>
-                        <Menu>
-                            <MenuButton
-                                as={Button}
-                                rounded={'full'}
-                                variant={'link'}
-                                cursor={'pointer'}>
-                                <Avatar
-                                    size={'sm'}
-                                    src={
-                                        'https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9'
-                                    }
-                                />
-                            </MenuButton>
-                            <MenuList>
-                                <MenuItem>Saved</MenuItem>
-                            </MenuList>
-                        </Menu>
-                    </Flex>
-                </Flex>
+          <Box
+            display={{ base: isOpen ? 'block' : 'none', md: 'block' }}
+            flexBasis={{ base: '100%', md: 'auto' }}
+          >
+            <Flex
+              align={['center', 'center', 'center', 'center']}
+              justify={['center', 'space-between', 'flex-end', 'flex-end']}
+              direction={['column', 'row', 'row', 'row']}
+              pt={[4, 4, 0, 0]}
+            >
+              <HStack
+                as={'nav'}
+                spacing={4}
+                display={{ base: 'none', md: 'flex' }}
+              >
+                {NavLinks.map(({ name, route }) => (
+                  <Link to={route}>
+                    <Button
+                      rounded={'full'}
+                      size="sm"
+                      color={['primary.500', 'primary.500', 'white', 'white']}
+                      _hover={{
+                        bg: [
+                          'primary.100',
+                          'primary.100',
+                          'primary.600',
+                          'primary.600'
+                        ]
+                      }}
+                    >
+                      {name}
+                    </Button>
+                  </Link>
+                ))}
+                <Button rounded={'full'} size="sm" onClick={toggleColorMode}>
+                  {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+                </Button>
+              </HStack>
+            </Flex>
+            {isOpen ? (
+              <Fade in={isOpen}>
+                <Box pb={4}>
+                  <Stack as={'nav'} spacing={4}>
+                    {NavLinks.map(({ name, route }) => (
+                      <Link to={route}>
+                        <Button
+                          rounded={'full'}
+                          size="sm"
+                          color={[
+                            'primary.500',
+                            'primary.500',
+                            'white',
+                            'white'
+                          ]}
+                          _hover={{
+                            bg: [
+                              'primary.100',
+                              'primary.100',
+                              'primary.600',
+                              'primary.600'
+                            ]
+                          }}
+                        >
+                          {name}
+                        </Button>
+                      </Link>
+                    ))}
+                  </Stack>
+                </Box>
+              </Fade>
+            ) : null}
+          </Box>
+        </Flex>
+      </Container>
+    </Box>
+  );
+};
 
-                {isOpen ? (
-                    <Box pb={4}>
-                        <Stack as={'nav'} spacing={4}>
-                            {Links.map((link) => (
-                                <NavLink key={link}>{link}</NavLink>
-                            ))}
-                        </Stack>
-                    </Box>
-                ) : null}
-            </Container>
-        </Box>
-    );
-}
+export default Header;

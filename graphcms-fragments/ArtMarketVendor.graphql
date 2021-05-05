@@ -26,7 +26,14 @@ fragment ArtMarketVendor on ArtMarketVendor {
     }
   }
   title
-  description
+  description {
+    ... on RichText {
+      raw
+      html
+      markdown
+      text
+    }
+  }
   images {
     ... on Asset {
       remoteTypeName: __typename

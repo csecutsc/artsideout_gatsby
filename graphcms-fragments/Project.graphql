@@ -26,7 +26,14 @@ fragment Project on Project {
     }
   }
   title
-  description
+  description {
+    ... on RichText {
+      raw
+      html
+      markdown
+      text
+    }
+  }
   projectType
   displayImage {
     ... on Asset {

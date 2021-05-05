@@ -26,7 +26,14 @@ fragment Installation on Installation {
     }
   }
   title
-  description
+  description {
+    ... on RichText {
+      raw
+      html
+      markdown
+      text
+    }
+  }
   mediumType
   images {
     ... on Asset {
@@ -45,7 +52,7 @@ fragment Installation on Installation {
     }
   }
   videoUrl
-  profile {
+  profiles {
     ... on Profile {
       remoteTypeName: __typename
       remoteId: id

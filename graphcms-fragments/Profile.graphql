@@ -26,8 +26,15 @@ fragment Profile on Profile {
     }
   }
   name
+  description {
+    ... on RichText {
+      raw
+      html
+      markdown
+      text
+    }
+  }
   type
-  description
   image {
     ... on Asset {
       remoteTypeName: __typename
