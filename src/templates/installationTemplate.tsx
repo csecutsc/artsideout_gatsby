@@ -37,12 +37,15 @@ const InstallationTemplate = ({ data }: PropType) => {
     navigate('/404');
     return null;
   }
-  const images = data.installation.images.map((image: any, i: number) => ({
-    original: 'image_path',
-    srcSet: image.gatsbyImageData.images.sources[0].srcSet,
-    originalAlt: image.altText ? image.altText : 'An Installation',
-    sizes: 'max-height: 500px'
-  }));
+  const images = data.installation.images
+    .filter((image: any) => image.gatsbyImageData)
+    .map((image: any) => {
+      return {
+        original: 'image_path',
+        srcSet: image.gatsbyImageData.images.sources[0].srcSet,
+        originalAlt: image.altText ? image.altText : 'An Installation'
+      };
+    });
   return (
     <Layout>
       <Seo title={data.installation.title} />
@@ -78,7 +81,7 @@ const InstallationTemplate = ({ data }: PropType) => {
         ))}
       </SimpleGrid> */}
 
-      {images ? (
+      {images.length !== 0 ? (
         <ImageGallery items={images} showIndex={true} lazyLoad={true} />
       ) : null}
 
