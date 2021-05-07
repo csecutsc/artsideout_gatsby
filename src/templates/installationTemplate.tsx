@@ -43,7 +43,6 @@ const InstallationTemplate = ({ data }: PropType) => {
     originalAlt: image.altText ? image.altText : 'An Installation',
     sizes: 'max-height: 500px'
   }));
-  console.log(data.installation.images);
   return (
     <Layout>
       <Seo title={data.installation.title} />
