@@ -1,7 +1,5 @@
 import { ImageType } from './CustomTypes';
 
-/* Does not include other reference fields */
-
 export interface InstallationType {
   remoteId: string;
   title: string;

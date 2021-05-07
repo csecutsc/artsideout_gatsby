@@ -1,10 +1,9 @@
 import { GatsbyImageProps } from 'gatsby-plugin-image';
 
-/* Does not include other reference fields */
-
 export interface ImageType {
   gatsbyImageData: GatsbyImageProps;
   altText: string;
+  url: string;
 }
 
 export interface MeetingType {

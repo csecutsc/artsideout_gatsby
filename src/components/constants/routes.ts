@@ -10,14 +10,14 @@ const NavLinks: Routes[] = [
   { name: 'art market', route: '/market' },
   { name: 'artists', route: '/artists' },
   { name: 'map', route: '/map' },
-  { name: '404', route: '/404' }
+  { name: 'Workshops', route: '/workshops' }
 ];
 
 const FestivalLinks: Routes[] = [
   { name: 'Special Projects', route: '/installations' },
   { name: 'Installations', route: '/installations' },
   { name: 'Performances', route: '/performances' },
-  { name: 'Activities', route: '/performances' }
+  { name: 'Workshops', route: '/performances' }
 ];
 
 const AdditionalLinks: Routes[] = [

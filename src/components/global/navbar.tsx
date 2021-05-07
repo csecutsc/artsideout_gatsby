@@ -18,8 +18,34 @@ import { Link as GatsbyLink } from 'gatsby';
 import { CloseIcon, HamburgerIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
 import { NavLinks } from '../constants/routes';
 
-const Navbar = () => {
+const NavbarButton = (name: string, route: string, key: number) => (
+  <GatsbyLink to={route}>
+    <Button
+      key={key}
+      variant="ghost"
+      rounded={'full'}
+      size="sm"
+      color={useColorModeValue('gray.700', 'gray.200')}
+      _hover={{
+        color: 'white',
+        bg: 'pink.400'
+      }}
+    >
+      {name}
+    </Button>
+  </GatsbyLink>
+);
+
+const ChangeColorModeButton = () => {
   const { colorMode, toggleColorMode } = useColorMode();
+  return (
+    <Button rounded={'full'} size="sm" onClick={toggleColorMode}>
+      {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+    </Button>
+  );
+};
+
+const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -39,15 +65,14 @@ const Navbar = () => {
           <Flex align="center">
             <Heading
               as={Text}
-              size="lg"
+              size="md"
               fontWeight="bold"
               color="pink.400"
               textAlign={['center', 'center', 'left', 'left']}
             >
-              ARTSIDEOUT
+              <GatsbyLink to={'/'}>ARTSIDEOUT</GatsbyLink>
             </Heading>
           </Flex>
-
           <IconButton
             size={'md'}
             icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
@@ -71,47 +96,20 @@ const Navbar = () => {
                 spacing={4}
                 display={{ base: 'none', md: 'flex' }}
               >
-                {NavLinks.map(({ name, route }) => (
-                  <GatsbyLink to={route}>
-                    <Button
-                      variant="ghost"
-                      rounded={'full'}
-                      size="sm"
-                      color={useColorModeValue('gray.700', 'gray.200')}
-                      _hover={{
-                        color: 'white',
-                        bg: 'pink.400'
-                      }}
-                    >
-                      {name}
-                    </Button>
-                  </GatsbyLink>
-                ))}
-                <Button rounded={'full'} size="sm" onClick={toggleColorMode}>
-                  {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
-                </Button>
+                {NavLinks.map(({ name, route }, i) =>
+                  NavbarButton(name, route, i)
+                )}
+                <ChangeColorModeButton />
               </HStack>
             </Flex>
+            {/* Mobile */}
             {isOpen ? (
               <Fade in={isOpen}>
                 <Box pb={4}>
                   <Stack as={'nav'} spacing={4}>
-                    {NavLinks.map(({ name, route }) => (
-                      <GatsbyLink to={route}>
-                        <Button
-                          variant="ghost"
-                          rounded={'full'}
-                          size="sm"
-                          color={useColorModeValue('gray.700', 'gray.200')}
-                          _hover={{
-                            color: 'white',
-                            bg: 'pink.400'
-                          }}
-                        >
-                          {name}
-                        </Button>
-                      </GatsbyLink>
-                    ))}
+                    {NavLinks.map(({ name, route }, i) =>
+                      NavbarButton(name, route, i)
+                    )}
                   </Stack>
                 </Box>
               </Fade>

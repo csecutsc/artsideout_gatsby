@@ -1,9 +1,10 @@
 const slugify = require(`slugify`);
 
+/* Generates user friendly links */
 module.exports = {
   CreateFriendlyUrl: function (text, uid) {
     return slugify(`${text}-${uid}`, {
-      replacement: '-', // replace spaces with replacement character, defaults to `-`
+      replacement: '-',
       lower: true,
       remove: /[*+~.()'"!:@#?]/g
     });
