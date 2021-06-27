@@ -26,4 +26,13 @@ fragment Sponsor on Sponsor {
     }
   }
   name
+  logo {
+    ... on Asset {
+      remoteTypeName: __typename
+      remoteId: id
+      locale
+      stage
+    }
+  }
+  isPartner
 }

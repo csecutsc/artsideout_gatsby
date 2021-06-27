@@ -44,12 +44,12 @@ fragment Project on Project {
     }
   }
   elements {
-    ... on Installation {
+    ... on Activity {
       remoteTypeName: __typename
       remoteId: id
       stage
     }
-    ... on Performance {
+    ... on Installation {
       remoteTypeName: __typename
       remoteId: id
       stage

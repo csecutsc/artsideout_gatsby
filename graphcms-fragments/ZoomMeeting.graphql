@@ -25,11 +25,11 @@ fragment ZoomMeeting on ZoomMeeting {
       stage
     }
   }
-  meetingUrl
   meetingId
+  meetingUrl
   meetingPass
   performance {
-    ... on Performance {
+    ... on Activity {
       remoteTypeName: __typename
       remoteId: id
       stage

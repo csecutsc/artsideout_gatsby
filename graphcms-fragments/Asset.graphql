@@ -47,8 +47,8 @@ fragment Asset on Asset {
       stage
     }
   }
-  imagesPerformance {
-    ... on Performance {
+  imagesActivity {
+    ... on Activity {
       remoteTypeName: __typename
       remoteId: id
       stage
@@ -82,8 +82,15 @@ fragment Asset on Asset {
       stage
     }
   }
-  filesPerformance {
-    ... on Performance {
+  filesActivity {
+    ... on Activity {
+      remoteTypeName: __typename
+      remoteId: id
+      stage
+    }
+  }
+  logoSponsor {
+    ... on Sponsor {
       remoteTypeName: __typename
       remoteId: id
       stage

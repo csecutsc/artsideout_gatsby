@@ -73,4 +73,5 @@ fragment Installation on Installation {
     }
   }
   locationRoom
+  slug
 }

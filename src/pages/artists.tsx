@@ -1,14 +1,26 @@
 import React from 'react';
-import { graphql, Link as GatsbyLink, useStaticQuery } from 'gatsby';
+import {
+  graphql,
+  Link as GatsbyLink,
+  useStaticQuery,
+  GatsbyGraphQLObjectType
+} from 'gatsby';
 import { SimpleGrid, Text, Heading, Link } from '@chakra-ui/react';
 
 import { Layout, Seo } from '../components';
 import { CreateFriendlyUrl } from '../helpers';
+import { ProfileData } from '../types/PrimaryTypes';
+
+interface ArtistProps {
+  artists: {
+    nodes: [ProfileData];
+  };
+}
 
 const ArtistsPage = () => {
-  const data: any = useStaticQuery(graphql`
+  const data: ArtistProps = useStaticQuery(graphql`
     query GetAllArtists {
-      artists: allGraphCmsProfile(filter: { type: { eq: ARTIST } }) {
+      artists: allGraphCmsProfile(filter: { profileType: { eq: ARTIST } }) {
         nodes {
           remoteId
           name

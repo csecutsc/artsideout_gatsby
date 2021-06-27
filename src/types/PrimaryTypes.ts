@@ -1,6 +1,6 @@
-import { ImageType } from './CustomTypes';
+import { ImageData } from './CustomTypes';
 
-export interface InstallationType {
+export interface InstallationData {
   remoteId: string;
   title: string;
   description: {
@@ -10,11 +10,11 @@ export interface InstallationType {
       };
     };
   };
-  images: ImageType[];
-  profiles: ProfileType[];
+  images: ImageData[];
+  profiles: ProfileData[];
 }
 
-export interface ProfileType {
+export interface ProfileData {
   name: string;
   description: {
     markdownNode: {
@@ -23,12 +23,13 @@ export interface ProfileType {
       };
     };
   };
-  image: ImageType[];
-  installations: InstallationType[];
-  performances: PerformanceType[];
+  profileType: [];
+  image: ImageData[];
+  installations: InstallationData[];
+  performances: ActivityData[];
 }
 
-export interface PerformanceType {
+export interface ActivityData {
   remoteId: string;
   description: {
     markdownNode: {
@@ -37,9 +38,9 @@ export interface PerformanceType {
       };
     };
   };
-  images: ImageType[];
+  images: ImageData[];
   videoUrl: string;
-  profiles: ProfileType[];
+  profiles: ProfileData[];
 }
 
 export interface VendorType {
@@ -52,5 +53,5 @@ export interface VendorType {
       };
     };
   };
-  images: ImageType[];
+  images: ImageData[];
 }

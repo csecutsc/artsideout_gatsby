@@ -67,7 +67,7 @@ const Footer = () => {
           <Stack align={'flex-start'}>
             <ListHeader>Interact with Us</ListHeader>
             {SocialLinks.map(({ name, route }) => (
-              <Link key={name} href={route} target="_blank">
+              <Link key={name} href={route} target="_blank" rel="noopener">
                 {name}
               </Link>
             ))}

@@ -4,7 +4,6 @@ interface Routes {
 }
 
 const NavLinks: Routes[] = [
-  { name: 'home', route: '/' },
   { name: 'installations', route: '/installations' },
   { name: 'performances', route: '/performances' },
   { name: 'art market', route: '/market' },

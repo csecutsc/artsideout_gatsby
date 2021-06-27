@@ -1,4 +1,4 @@
-fragment Performance on Performance {
+fragment Activity on Activity {
   stage
   remoteId: id
   createdAt
@@ -52,7 +52,7 @@ fragment Performance on Performance {
       stage
     }
   }
-  profile {
+  profiles {
     ... on Profile {
       remoteTypeName: __typename
       remoteId: id

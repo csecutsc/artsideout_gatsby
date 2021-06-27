@@ -41,16 +41,15 @@ const Hero = () => {
           <Heading
             as="h2"
             size="md"
-            color="primary.800"
-            opacity="0.8"
-            fontWeight="normal"
+            color="black"
+            fontWeight="bold"
             lineHeight={1.5}
             textAlign={['center', 'center', 'left', 'left']}
           >
             “ENDURANCE” is the ability to resist through and recover from
             adversity.
           </Heading>
-          <Link as={GatsbyLink} to="/installations">
+          <GatsbyLink to="/installations">
             <Button
               colorScheme="primary"
               borderRadius="8px"
@@ -61,10 +60,10 @@ const Hero = () => {
             >
               View Installations
             </Button>
-          </Link>
+          </GatsbyLink>
         </Stack>
         <Box w={{ base: '60%', sm: '50%', md: '40%' }} mb={{ base: 12, md: 0 }}>
-          <StaticImage src="../../images/aso_logo.jpg" alt="" />
+          <StaticImage src="../../images/aso_logo.svg" alt="" />
         </Box>
       </Flex>
     </Box>

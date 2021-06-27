@@ -26,14 +26,6 @@ const Button = {
 };
 
 const ASOTheme = extendTheme({
-  colors: {
-    primary: {
-      100: '#f7fafc',
-      500: '#1a202c',
-      600: '#1a202c',
-      900: '#1a202c'
-    }
-  },
   components: {
     Button
   }

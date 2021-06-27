@@ -14,9 +14,10 @@ import {
   Fade,
   Heading
 } from '@chakra-ui/react';
-import { Link as GatsbyLink } from 'gatsby';
+import { Link as GatsbyLink, Link } from 'gatsby';
 import { CloseIcon, HamburgerIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
 import { NavLinks } from '../constants/routes';
+import { StaticImage } from 'gatsby-plugin-image';
 
 const NavbarButton = (name: string, route: string, key: number) => (
   <GatsbyLink to={route}>
@@ -60,18 +61,16 @@ const Navbar = () => {
           justify="space-between"
           wrap="wrap"
           w="100%"
-          p={8}
+          p={6}
         >
-          <Flex align="center">
-            <Heading
-              as={Text}
-              size="md"
-              fontWeight="bold"
-              color="pink.400"
-              textAlign={['center', 'center', 'left', 'left']}
-            >
-              <GatsbyLink to={'/'}>ARTSIDEOUT</GatsbyLink>
-            </Heading>
+          <Flex>
+            <Link to="/">
+              <StaticImage
+                src="../../images/aso_logo.svg"
+                alt="home page button"
+                height={50}
+              />
+            </Link>
           </Flex>
           <IconButton
             size={'md'}

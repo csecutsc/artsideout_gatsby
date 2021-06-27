@@ -26,6 +26,7 @@ fragment Profile on Profile {
     }
   }
   name
+  profileType
   description {
     ... on RichText {
       raw
@@ -34,7 +35,6 @@ fragment Profile on Profile {
       text
     }
   }
-  type
   image {
     ... on Asset {
       remoteTypeName: __typename
@@ -51,7 +51,7 @@ fragment Profile on Profile {
     }
   }
   performances {
-    ... on Performance {
+    ... on Activity {
       remoteTypeName: __typename
       remoteId: id
       stage

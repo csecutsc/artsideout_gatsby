@@ -7,11 +7,11 @@ import { SimpleGrid, Text, Heading } from '@chakra-ui/react';
 import Layout from '../components/layout';
 import Seo from '../components/seo';
 import PropTypes from 'prop-types';
-import { ProfileType } from '../types/PrimaryTypes';
+import { ProfileData } from '../types/PrimaryTypes';
 
 interface PropType {
   data: {
-    artist: ProfileType;
+    artist: ProfileData;
   };
 }
 
@@ -47,18 +47,32 @@ const ArtistTemplate = ({ data }: PropType) => {
         </MDXRenderer>
       </Heading>
 
-      <SimpleGrid columns={[2, null, 3]} autoFlow="row dense">
-        {data.artist.installations.map((data: any, i: number) =>
-          data.images.map((image: any, i: number) => (
-            <GatsbyImage
-              key={i}
-              objectFit="cover"
-              image={image ? image.gatsbyImageData : ''}
-              alt={image ? image.altText : ''}
-            />
-          ))
-        )}
-      </SimpleGrid>
+      {data.artist.installations ? (
+        <div>
+          <Heading
+            as={Text}
+            size="lg"
+            fontWeight="bold"
+            color="pink.400"
+            textAlign={['center', 'center', 'left', 'left']}
+          >
+            Installations
+          </Heading>
+
+          <SimpleGrid columns={[2, null, 3]} autoFlow="row dense">
+            {data.artist.installations.map((data: any, i: number) =>
+              data.images.map((image: any, i: number) => (
+                <GatsbyImage
+                  key={i}
+                  objectFit="cover"
+                  image={image ? image.gatsbyImageData : ''}
+                  alt={image ? image.altText : ''}
+                />
+              ))
+            )}
+          </SimpleGrid>
+        </div>
+      ) : null}
 
       {/* <SimpleGrid columns={[2, null, 3]} autoFlow="row dense">
         {data.artist.performances.images.map((image: any, i: number) => (
@@ -97,7 +111,7 @@ export const data: any = graphql`
           }
         }
       }
-      type
+      profileType
       installations {
         remoteId
         title

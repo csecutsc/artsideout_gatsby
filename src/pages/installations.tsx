@@ -1,10 +1,21 @@
 import React from 'react';
 import { graphql, Link as GatsbyLink, useStaticQuery } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
-import { SimpleGrid, Text, Heading, Center, Link } from '@chakra-ui/react';
+import {
+  SimpleGrid,
+  Text,
+  Heading,
+  Center,
+  Link,
+  Input,
+  InputGroup,
+  InputLeftElement,
+  Divider
+} from '@chakra-ui/react';
 
 import { Layout, Seo } from '../components';
 import { CreateFriendlyUrl } from '../helpers';
+import { SearchIcon } from '@chakra-ui/icons';
 
 const InstallationPage = () => {
   const data: any = useStaticQuery(graphql`
@@ -15,6 +26,11 @@ const InstallationPage = () => {
           title
           images {
             gatsbyImageData(width: 250, placeholder: BLURRED, quality: 20)
+            localFile {
+              childImageSharp {
+                gatsbyImageData(layout: FULL_WIDTH)
+              }
+            }
           }
           profiles {
             name
@@ -23,11 +39,24 @@ const InstallationPage = () => {
       }
     }
   `);
+  console.log(data);
   return (
     <Layout>
       <Seo title="Installations" />
+      {/* <InputGroup>
+        <InputLeftElement
+          pointerEvents="none"
+          children={
+            <Center>
+              <SearchIcon color="gray.300" />
+            </Center>
+          }
+        />
+        <Input variant="filled" placeholder="Search Installations" size="lg" />
+      </InputGroup> */}
+
       <Heading
-        as={Text}
+        as="h1"
         size="xl"
         fontWeight="bold"
         color="pink.400"
@@ -47,9 +76,9 @@ const InstallationPage = () => {
       >
         Special Projects currated by the ARTSIDEOUT team.
       </Heading>
-
+      <Divider />
       <Heading
-        as={Text}
+        as="h1"
         size="xl"
         fontWeight="bold"
         color="pink.400"
@@ -82,7 +111,11 @@ const InstallationPage = () => {
             >
               <GatsbyImage
                 objectFit="cover"
-                image={data.images[0] ? data.images[0].gatsbyImageData : ''}
+                image={
+                  data.images[0]
+                    ? data.images[0].localFile.childImageSharp.gatsbyImageData
+                    : ''
+                }
                 alt={data.images[0] ? data.images[0].altText : data.title}
               />
               <Heading

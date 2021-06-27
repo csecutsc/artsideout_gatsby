@@ -5,34 +5,17 @@
  * See: https://www.gatsbyjs.com/docs/use-static-query/
  */
 
-import * as React from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { ChakraProvider, Container } from '@chakra-ui/react';
 import { Navbar, Footer, ASOTheme } from './global';
+import 'react-image-gallery/styles/css/image-gallery.css';
 
 interface LayoutProps {
   children?: any;
 }
 
-// interface LayoutData {
-//   site: {
-//     siteMetadata: {
-//       title: string;
-//     },
-//   };
-// }
-
 const Layout = ({ children }: LayoutProps) => {
-  // const data: LayoutData = useStaticQuery(graphql`
-  //   query SiteTitleQuery {
-  //     site {
-  //       siteMetadata {
-  //         title
-  //       }
-  //     }
-  //   }
-  // `)
-
   return (
     <ChakraProvider theme={ASOTheme}>
       <Navbar />

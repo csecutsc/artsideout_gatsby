@@ -2,14 +2,24 @@ import * as React from 'react';
 import { graphql, navigate } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
-import { SimpleGrid, Text, Heading, HStack } from '@chakra-ui/react';
+import {
+  SimpleGrid,
+  Text,
+  Heading,
+  HStack,
+  Stack,
+  Divider,
+  Box,
+  Grid,
+  GridItem
+} from '@chakra-ui/react';
 import ImageGallery from 'react-image-gallery';
 import 'react-image-gallery/styles/css/image-gallery.css';
 
 import Layout from '../components/layout';
 import Seo from '../components/seo';
 import PropTypes from 'prop-types';
-import { InstallationType } from '../types/PrimaryTypes';
+import { InstallationData } from '../types/PrimaryTypes';
 
 // const images = [
 //   {
@@ -28,7 +38,7 @@ import { InstallationType } from '../types/PrimaryTypes';
 
 interface PropType {
   data: {
-    installation: InstallationType;
+    installation: InstallationData;
   };
 }
 
@@ -49,55 +59,40 @@ const InstallationTemplate = ({ data }: PropType) => {
   return (
     <Layout>
       <Seo title={data.installation.title} />
-      <Heading
-        as={Text}
-        size="xl"
-        fontWeight="bold"
-        color="pink.400"
-        textAlign={['center', 'center', 'left', 'left']}
+
+      <Grid
+        h="200px"
+        templateRows="repeat(2, 1fr)"
+        templateColumns="repeat(4, 1fr)"
+        gap={4}
       >
-        {data.installation.title}
-      </Heading>
-
-      {/* <HStack spacing={8}>
-        {data.installation.images.map((image: any, i: number) => (
-          <GatsbyImage
-            key={i}
-            objectFit="contain"
-            image={image ? image.gatsbyImageData : ''}
-            alt={image ? image.altText : ''}
-          />
-        ))}
-      </HStack>
-
-      <SimpleGrid columns={[2, null, 3]}>
-        {data.installation.images.map((image: any, i: number) => (
-          <GatsbyImage
-            key={i}
-            objectFit="cover"
-            image={image ? image.gatsbyImageData : ''}
-            alt={image ? image.altText : ''}
-          />
-        ))}
-      </SimpleGrid> */}
-
-      {images.length !== 0 ? (
-        <ImageGallery items={images} showIndex={true} lazyLoad={true} />
-      ) : null}
-
-      <Heading
-        as="h2"
-        size="md"
-        color="primary.800"
-        opacity="0.8"
-        fontWeight="normal"
-        lineHeight={1.5}
-        textAlign={['center', 'center', 'left', 'left']}
-      >
-        <MDXRenderer>
-          {data.installation.description.markdownNode.childMdx.body}
-        </MDXRenderer>
-      </Heading>
+        <GridItem rowSpan={2} colSpan={2} bg="tomato">
+          {images.length !== 0 ? (
+            <ImageGallery items={images} showIndex={true} lazyLoad={true} />
+          ) : null}
+        </GridItem>
+        <GridItem colSpan={2}>
+          <Heading
+            as={Text}
+            size="xl"
+            fontWeight="bold"
+            color="pink.400"
+            textAlign={['center', 'center', 'left', 'left']}
+          >
+            {data.installation.title}
+          </Heading>
+        </GridItem>
+        <GridItem colSpan={2}>
+          <Box>
+            <Stack direction="row" h="100px" p={4}>
+              <Divider orientation="vertical" />
+              <MDXRenderer>
+                {data.installation.description.markdownNode.childMdx.body}
+              </MDXRenderer>
+            </Stack>
+          </Box>
+        </GridItem>
+      </Grid>
     </Layout>
   );
 };
