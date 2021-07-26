@@ -25,10 +25,10 @@ const InstallationPage = () => {
           remoteId
           title
           images {
-            gatsbyImageData(width: 250, placeholder: BLURRED, quality: 20)
+            gatsbyImageData(width: 500, height: 500)
             localFile {
               childImageSharp {
-                gatsbyImageData(layout: FULL_WIDTH)
+                gatsbyImageData(width: 500)
               }
             }
           }
@@ -112,7 +112,7 @@ const InstallationPage = () => {
               <GatsbyImage
                 objectFit="cover"
                 image={
-                  data.images[0]
+                  data.images[0] && data.images[0].localFile.childImageSharp
                     ? data.images[0].localFile.childImageSharp.gatsbyImageData
                     : ''
                 }

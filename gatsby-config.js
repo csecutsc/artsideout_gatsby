@@ -22,7 +22,11 @@ module.exports = {
     `gatsby-transformer-sharp`,
     {
       resolve: `gatsby-plugin-sharp`,
-      defaults: { width: 200, placeholder: 'BLURRED' },
+      defaults: {
+        width: 600,
+        placeholder: 'BLURRED',
+        quality: 40
+      },
       options: {
         failOnError: false
       }

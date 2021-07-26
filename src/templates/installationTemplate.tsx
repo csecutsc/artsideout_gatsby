@@ -106,7 +106,6 @@ export const data: any = graphql`
         gatsbyImageData(width: 300, placeholder: BLURRED, quality: 70)
         altText
         url
-        altText
       }
       description {
         markdownNode {

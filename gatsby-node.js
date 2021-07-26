@@ -9,10 +9,6 @@
 const path = require(`path`);
 const slugify = require(`slugify`);
 var { CreateFriendlyUrl } = require('./src/helpers');
-const sharp = require('sharp');
-
-sharp.cache(false);
-sharp.simd(false);
 
 exports.createPages = async ({ graphql, actions }) => {
   const result = await graphql(`
