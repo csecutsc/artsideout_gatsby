@@ -39,7 +39,7 @@ const Footer = () => {
         >
           <Stack spacing={6}>
             <Box>
-              <Text color="pink.400" fontWeight={'700'} fontSize={'lg'} mb={2}>
+              <Text color="#FEB7C5" fontWeight={'700'} fontSize={'lg'} mb={2}>
                 ARTSIDEOUT: ENDURANCE
               </Text>
             </Box>

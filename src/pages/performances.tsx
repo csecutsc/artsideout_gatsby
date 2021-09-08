@@ -26,7 +26,7 @@ const PerformancesPage = () => {
         as={Text}
         size="xl"
         fontWeight="bold"
-        color="pink.400"
+        color="#FEB7C5"
         textAlign={['center', 'center', 'left', 'left']}
       >
         Performances
@@ -35,7 +35,7 @@ const PerformancesPage = () => {
         as={Text}
         size="xl"
         fontWeight="bold"
-        color="pink.400"
+        color="#FEB7C5"
         textAlign={['center', 'center', 'left', 'left']}
       >
         Currently Happening
@@ -44,7 +44,7 @@ const PerformancesPage = () => {
         as={Text}
         size="xl"
         fontWeight="bold"
-        color="pink.400"
+        color="#FEB7C5"
         textAlign={['center', 'center', 'left', 'left']}
       >
         Upcoming Performances
@@ -55,7 +55,7 @@ const PerformancesPage = () => {
         as={Text}
         size="xl"
         fontWeight="bold"
-        color="pink.400"
+        color="#FEB7C5"
         textAlign={['center', 'center', 'left', 'left']}
       >
         Past Performances

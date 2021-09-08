@@ -59,7 +59,7 @@ const InstallationPage = () => {
         as="h1"
         size="xl"
         fontWeight="bold"
-        color="pink.400"
+        color="#FEB7C5"
         textAlign={['center', 'center', 'left', 'left']}
       >
         Featured Collections
@@ -81,13 +81,13 @@ const InstallationPage = () => {
         as="h1"
         size="xl"
         fontWeight="bold"
-        color="pink.400"
+        color="#FEB7C5"
         textAlign={['center', 'center', 'left', 'left']}
       >
         Installations
       </Heading>
 
-      <Heading
+      {/* <Heading
         as="h2"
         size="md"
         color="primary.800"
@@ -98,7 +98,7 @@ const InstallationPage = () => {
       >
         In thinking of “Endurance”, artists create a diverse body of works.
         Click on an installation to learn more!
-      </Heading>
+      </Heading> */}
       <SimpleGrid columns={[2, null, 4]} spacing={2}>
         {data.installations.nodes.map((data: any, i: number) => (
           <Center>

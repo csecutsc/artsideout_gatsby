@@ -8,7 +8,6 @@ const NavLinks: Routes[] = [
   { name: 'performances', route: '/performances' },
   { name: 'art market', route: '/market' },
   { name: 'artists', route: '/artists' },
-  { name: 'map', route: '/map' },
   { name: 'Workshops', route: '/workshops' }
 ];
 

@@ -11,7 +11,7 @@ const TeamPage = () => {
         as={Text}
         size="xl"
         fontWeight="bold"
-        color="pink.400"
+        color="#FEB7C5"
         textAlign={['center', 'center', 'left', 'left']}
       >
         Working on it

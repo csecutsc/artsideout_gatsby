@@ -11,10 +11,10 @@ const Button = {
   variants: {
     outline: {
       border: '2px solid',
-      color: 'pink.400'
+      color: '#FEB7C5'
     },
     solid: {
-      bg: 'pink.400',
+      bg: '#FEB7C5',
       color: 'white'
     }
   },

@@ -15,7 +15,7 @@ const Hero = () => {
         backgroundSize: '100%',
         backgroundPosition: 'center'
       }}
-      height={'50vh'}
+      height={{ base: '80vh', md: "50vh" }}
     >
       <Flex
         align="center"
@@ -23,7 +23,7 @@ const Hero = () => {
         direction={{ base: 'column-reverse', md: 'row' }}
         px={8}
         mb={16}
-        height={'50vh'}
+        height={{ base: '80vh', md: "50vh" }}
       >
         <Stack
           spacing={4}
@@ -33,7 +33,7 @@ const Hero = () => {
           <Heading
             size="2xl"
             fontWeight="bold"
-            color="pink.400"
+            color="#FEB7C5"
             textAlign={['center', 'center', 'left', 'left']}
           >
             ARTSIDEOUT 2021: ENDURANCE
@@ -45,6 +45,7 @@ const Hero = () => {
             fontWeight="bold"
             lineHeight={1.5}
             textAlign={['center', 'center', 'left', 'left']}
+            marginBottom={"20px"}
           >
             “ENDURANCE” is the ability to resist through and recover from
             adversity.
