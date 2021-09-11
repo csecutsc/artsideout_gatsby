@@ -20,6 +20,7 @@ import Layout from '../components/layout';
 import Seo from '../components/seo';
 import PropTypes from 'prop-types';
 import { InstallationData } from '../types/PrimaryTypes';
+import ReactDisqusComments from 'react-disqus-comments';
 
 // const images = [
 //   {
@@ -80,6 +81,11 @@ const InstallationTemplate = ({ data }: PropType) => {
             textAlign={['center', 'center', 'left', 'left']}
           >
             {data.installation.title}
+            <ReactDisqusComments
+              shortname="test-gyesozwtci"
+              identifier={data.installation.remoteId}
+              title={data.installation.title}
+            />
           </Heading>
         </GridItem>
         <GridItem colSpan={2}>

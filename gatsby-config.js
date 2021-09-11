@@ -61,6 +61,12 @@ module.exports = {
         buildMarkdownNodes: true
       }
     },
+    {
+      resolve: `gatsby-plugin-disqus`,
+      options: {
+        shortname: `your-disqus-shortname`
+      }
+    },
     '@chakra-ui/gatsby-plugin',
     `gatsby-plugin-mdx`,
     `gatsby-plugin-offline`
