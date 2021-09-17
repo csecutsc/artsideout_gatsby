@@ -77,7 +77,7 @@ const InstallationTemplate = ({ data }: PropType) => {
             as={Text}
             size="xl"
             fontWeight="bold"
-            color="#FEB7C5"
+            color="#E81D77"
             textAlign={['center', 'center', 'left', 'left']}
           >
             {data.installation.title}

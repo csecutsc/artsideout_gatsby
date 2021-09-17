@@ -38,7 +38,7 @@ const ArtistsPage = () => {
         as={Text}
         size="xl"
         fontWeight="bold"
-        color="#FEB7C5"
+        color="#E81D77"
         textAlign={['center', 'center', 'left', 'left']}
       >
         Artists
@@ -62,9 +62,9 @@ const ArtistsPage = () => {
           <Link
             as={GatsbyLink}
             to={`/artist/${CreateFriendlyUrl(data.name, data.remoteId)}`}
-            color={"#FEB7C5"}
+            color={"#E81D77"}
           >
-            <Text fontWeight={'400'} color={"#FEB7C5"} fontSize={'lg'} mb={2}>
+            <Text fontWeight={'400'} color={"#E81D77"} fontSize={'lg'} mb={2}>
               {data.name}
             </Text>
           </Link>

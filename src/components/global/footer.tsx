@@ -1,7 +1,9 @@
 import React, { ReactNode } from 'react';
+import ReactAudioPlayer from 'react-audio-player';
 
 import {
   Box,
+  Center,
   Container,
   Link,
   SimpleGrid,
@@ -27,19 +29,29 @@ const ListHeader = ({ children }: { children: ReactNode }) => {
 };
 
 const Footer = () => {
+
+  let audio1 = new Audio('https://www.youtube.com/watch?v=RquTVBJsLq4&ab_channel=ExperimentMusic')
+
   return (
     <Box
       bg={useColorModeValue('gray.50', 'gray.900')}
       color={useColorModeValue('gray.700', 'gray.200')}
     >
       <Container as={Stack} maxW={'7xl'} py={10}>
+        <Center paddingBottom="20px">
+          <ReactAudioPlayer
+            src="http://docs.google.com/uc?export=open&id=1G7f19wJ2j_6qw-BbzdxAucoszDGUyACF"
+            autoPlay
+            controls
+          />
+        </Center>
         <SimpleGrid
           templateColumns={{ sm: '1fr 1fr', md: '2fr 1fr 1fr 1fr 1fr' }}
           spacing={8}
         >
           <Stack spacing={6}>
             <Box>
-              <Text color="#FEB7C5" fontWeight={'700'} fontSize={'lg'} mb={2}>
+              <Text color="#E81D77" fontWeight={'700'} fontSize={'lg'} mb={2}>
                 ARTSIDEOUT: ENDURANCE
               </Text>
             </Box>
@@ -73,6 +85,7 @@ const Footer = () => {
             ))}
           </Stack>
         </SimpleGrid>
+
       </Container>
     </Box>
   );

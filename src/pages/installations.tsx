@@ -80,7 +80,7 @@ const InstallationPage = () => {
         as="h1"
         size="xl"
         fontWeight="bold"
-        color="#FEB7C5"
+        color="#E81D77"
         textAlign={['center', 'center', 'left', 'left']}
       >
         Featured Collections
@@ -102,7 +102,7 @@ const InstallationPage = () => {
         as="h1"
         size="xl"
         fontWeight="bold"
-        color="#FEB7C5"
+        color="#E81D77"
         textAlign={['center', 'center', 'left', 'left']}
       >
         Installations
