@@ -4,11 +4,12 @@ interface Routes {
 }
 
 const NavLinks: Routes[] = [
-  { name: 'installations', route: '/installations' },
+  { name: 'Special Projects', route: '/special-projects' },
+  { name: 'Studio', route: '/installations' },
   { name: 'performances', route: '/performances' },
-  { name: 'art market', route: '/market' },
   { name: 'artists', route: '/artists' },
-  { name: 'Workshops', route: '/workshops' }
+  { name: 'ASO x Soundwaves', route: '/soundwaves' },
+  { name: 'Sponsors', route: '/sponsors' }
 ];
 
 const FestivalLinks: Routes[] = [
