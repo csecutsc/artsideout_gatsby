@@ -52,9 +52,6 @@ const InstallationPage = () => {
 
   const [isPreview, setIsPreview] = useState(true)
 
-  console.log(data)
-  console.log(data.installations.nodes[entryOne])
-
   // data.installations.nodes.splice(entryOne, 1)
   // data.installations.nodes.splice(entryTwo, 1)
   // data.installations.nodes.splice(entryThree, 1)
@@ -95,7 +92,7 @@ const InstallationPage = () => {
         lineHeight={1.5}
         textAlign={['center', 'center', 'left', 'left']}
       >
-        Special Projects currated by the ARTSIDEOUT team.
+        Projects currated by the ARTSIDEOUT team.
       </Heading>
       <Divider />
       <Heading
