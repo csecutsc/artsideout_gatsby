@@ -56,7 +56,7 @@ module.exports = {
       options: {
         // Your GraphCMS API endpoint. Available from your project settings.
         endpoint:
-          'https://api-us-east-1.graphcms.com/v2/ckjv3ugbcod9j01z1hvndcrdh/master',
+          'https://api-us-east-1.graphcms.com/v2/ckrl23npz27ng01xsbqgg6yih/master',
         downloadLocalImages: true,
         buildMarkdownNodes: true
       }
