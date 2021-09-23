@@ -30,8 +30,6 @@ const ListHeader = ({ children }: { children: ReactNode }) => {
 
 const Footer = () => {
 
-  let audio1 = new Audio('https://www.youtube.com/watch?v=RquTVBJsLq4&ab_channel=ExperimentMusic')
-
   return (
     <Box
       bg={useColorModeValue('gray.50', 'gray.900')}
