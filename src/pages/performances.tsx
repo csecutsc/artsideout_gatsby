@@ -25,7 +25,7 @@ const PerformancesPage = () => {
             }
             profiles {
               name
-              id
+              remoteId
             }
           }
       }
@@ -56,7 +56,7 @@ const PerformancesPage = () => {
         Upcoming Performances
       </Heading>
       <SimpleGrid columns={[1, 1, 3]} spacing={2}>
-        {upcoming.map((event: { startTime: Date; endTime: Date; title: string; zoomMeeting: { meetingUrl: string }; profiles: { name: string, id: any; }[]; }) => {
+        {upcoming.map((event: { startTime: Date; endTime: Date; title: string; zoomMeeting: { meetingUrl: string }; profiles: { name: string, remoteId: any; }[]; }) => {
           return (
             <Box width="400px" mx="auto" rounded="lg" shadow="md" maxW="2xl">
               <Box p={6}>
@@ -86,7 +86,7 @@ const PerformancesPage = () => {
                         Join Meeting
                       </Link>
                     </Button>
-                    <Link href={CreateFriendlyUrl(event.profiles[0].name, event.profiles[0].id)} fontWeight="bold">
+                    <Link href={CreateFriendlyUrl(event.profiles[0].name, event.profiles[0].remoteId)} fontWeight="bold">
                       {event.profiles[0].name}
                     </Link>
                   </Flex>
@@ -108,7 +108,7 @@ const PerformancesPage = () => {
         Past Performances
       </Heading>
       <SimpleGrid columns={[1, 1, 3]} spacing={2}>
-        {past.map((event: { startTime: Date; endTime: Date; title: string; videoUrl: string; zoomMeeting: { meetingUrl: string }; profiles: { name: string, id: any; }[]; }) => {
+        {past.map((event: { startTime: Date; endTime: Date; title: string; videoUrl: string; zoomMeeting: { meetingUrl: string }; profiles: { name: string, remoteId: any; }[]; }) => {
           return (
             <Box width="400px" mx="auto" rounded="lg" shadow="md" maxW="2xl">
               <Box p={6}>
@@ -142,7 +142,7 @@ const PerformancesPage = () => {
                       :
                       <div />
                     }
-                    <Link href={CreateFriendlyUrl(event.profiles[0].name, event.profiles[0].id)} fontWeight="bold">
+                    <Link href={CreateFriendlyUrl(event.profiles[0].name, event.profiles[0].remoteId)} fontWeight="bold">
                       {event.profiles[0].name}
                     </Link>
                   </Flex>

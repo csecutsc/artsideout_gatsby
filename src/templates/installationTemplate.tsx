@@ -62,7 +62,6 @@ const InstallationTemplate = ({ data }: PropType) => {
       <Seo title={data.installation.title} />
 
       <Grid
-        h="200px"
         templateRows="repeat(2, 1fr)"
         templateColumns="repeat(4, 1fr)"
         gap={4}
@@ -81,11 +80,6 @@ const InstallationTemplate = ({ data }: PropType) => {
             textAlign={['center', 'center', 'left', 'left']}
           >
             {data.installation.title}
-            <ReactDisqusComments
-              shortname="test-gyesozwtci"
-              identifier={data.installation.remoteId}
-              title={data.installation.title}
-            />
           </Heading>
         </GridItem>
         <GridItem colSpan={2}>
@@ -99,6 +93,11 @@ const InstallationTemplate = ({ data }: PropType) => {
           </Box>
         </GridItem>
       </Grid>
+      <ReactDisqusComments
+        shortname="test-gyesozwtci"
+        identifier={data.installation.remoteId}
+        title={data.installation.title}
+      />
     </Layout>
   );
 };
