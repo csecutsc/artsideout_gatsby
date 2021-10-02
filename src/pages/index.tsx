@@ -38,33 +38,6 @@ const IndexPage = () => {
     <Layout>
       <Seo title="Home" />
       <Hero />
-      <Flex
-        align="center"
-        justify={{ base: 'center', md: 'space-around', xl: 'space-between' }}
-        direction={{ base: 'column-reverse', md: 'row' }}
-        px={8}
-        mb={16}
-      >
-        <Heading
-          as={Text}
-          size="xl"
-          fontWeight="bold"
-          color="#E81D77"
-          textAlign={['center', 'center', 'left', 'left']}
-        >
-          Sponsors
-        </Heading>
-
-        <Heading
-          as={Text}
-          size="xl"
-          fontWeight="bold"
-          color="#E81D77"
-          textAlign={['center', 'center', 'left', 'left']}
-        >
-          Partners
-        </Heading>
-      </Flex>
     </Layout>
   );
 };

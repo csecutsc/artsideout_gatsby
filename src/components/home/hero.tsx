@@ -15,7 +15,7 @@ const Hero = () => {
         backgroundSize: '100%',
         backgroundPosition: 'center'
       }}
-      height={{ base: '80vh', md: "50vh" }}
+      height={{ base: '80vh', md: "50vh", sm: "60vh" }}
     >
       <Flex
         align="center"
@@ -64,7 +64,7 @@ const Hero = () => {
           </GatsbyLink>
         </Stack>
         <Box w={{ base: '60%', sm: '50%', md: '40%' }} mb={{ base: 12, md: 0 }}>
-          <StaticImage src="../../images/aso_logo.svg" alt="" />
+          <StaticImage src="../../images/aso_logo.jpg" alt="" />
         </Box>
       </Flex>
     </Box>

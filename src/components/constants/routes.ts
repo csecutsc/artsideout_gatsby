@@ -6,7 +6,8 @@ interface Routes {
 const NavLinks: Routes[] = [
   { name: 'Special Projects', route: '/special-projects' },
   { name: 'Studio', route: '/installations' },
-  { name: 'performances', route: '/performances' },
+  { name: 'Performance', route: '/performances' },
+  { name: 'Workshops', route: '/workshops' },
   { name: 'artists', route: '/artists' },
   { name: 'ASO x Soundwaves', route: '/soundwaves' },
   { name: 'Sponsors', route: '/sponsors' }
@@ -14,15 +15,15 @@ const NavLinks: Routes[] = [
 
 const FestivalLinks: Routes[] = [
   { name: 'Special Projects', route: '/installations' },
-  { name: 'Installations', route: '/installations' },
-  { name: 'Performances', route: '/performances' },
+  { name: 'Studio', route: '/installations' },
+  { name: 'Performance', route: '/performances' },
   { name: 'Workshops', route: '/performances' }
 ];
 
 const AdditionalLinks: Routes[] = [
   { name: 'Artists', route: '/artists' },
   { name: 'Team', route: '/team' },
-  { name: 'Map', route: '/map' }
+  { name: 'ASO X SOUNDWAVES', route: '/soundwaves' }
 ];
 
 const SocialLinks: Routes[] = [

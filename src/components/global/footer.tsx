@@ -41,6 +41,7 @@ const Footer = () => {
             src="http://docs.google.com/uc?export=open&id=1G7f19wJ2j_6qw-BbzdxAucoszDGUyACF"
             autoPlay
             controls
+            volume={0.2}
           />
         </Center>
         <SimpleGrid

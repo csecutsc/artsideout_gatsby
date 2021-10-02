@@ -40,7 +40,7 @@ const InstallationPage = () => {
       }
     }
   `);
-  console.log(data.installations.nodes.length);
+  console.log(data.installations.nodes);
 
   const entryOne = Math.floor(Math.random() * data.installations.nodes.length)
   const entryTwo = Math.floor(Math.random() * data.installations.nodes.length)
@@ -80,29 +80,7 @@ const InstallationPage = () => {
         color="#E81D77"
         textAlign={['center', 'center', 'left', 'left']}
       >
-        Featured Collections
-      </Heading>
-
-      <Heading
-        as="h2"
-        size="md"
-        color="primary.800"
-        opacity="0.8"
-        fontWeight="normal"
-        lineHeight={1.5}
-        textAlign={['center', 'center', 'left', 'left']}
-      >
-        Projects currated by the ARTSIDEOUT team.
-      </Heading>
-      <Divider />
-      <Heading
-        as="h1"
-        size="xl"
-        fontWeight="bold"
-        color="#E81D77"
-        textAlign={['center', 'center', 'left', 'left']}
-      >
-        Installations
+        Studio
       </Heading>
 
       {/* <Heading
