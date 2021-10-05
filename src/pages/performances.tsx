@@ -15,6 +15,7 @@ const PerformancesPage = () => {
             endTime
             startTime
             title
+            remoteId
             videoUrl
             zoomMeeting {
               meetingId
@@ -27,11 +28,23 @@ const PerformancesPage = () => {
             }
           }
       }
+      allGraphCmsProject {
+        nodes {
+          elements {
+            ... on GraphCMS_Activity {
+              remoteId
+              title
+            }
+          }
+        }
+      }
     }
   `);
 
-    data.activities.nodes = data.activities.nodes.filter((meeting: { startTime: string | number | Date; zoomMeeting: { meetingUrl: string } }) => {
-        return !meeting.zoomMeeting
+    const specialIds = data.allGraphCmsProject.nodes.map((node: { elements: { remoteId: any; }[]; }) => node.elements[0].remoteId)
+
+    data.activities.nodes = data.activities.nodes.filter((meeting: { remoteId: string; startTime: string | number | Date; zoomMeeting: { meetingUrl: string } }) => {
+        return !meeting.zoomMeeting && !specialIds.includes(meeting.remoteId)
     })
 
 
@@ -47,11 +60,11 @@ const PerformancesPage = () => {
             >
                 Upcoming Performances
             </Heading>
-            <SimpleGrid columns={[1, 1, 3]} spacing={2}>
+            <SimpleGrid columns={[1, 1, 3]} spacing={1}>
                 {data.activities.nodes.map((event: { videoUrl: string; startTime: Date; endTime: Date; title: string; zoomMeeting: { meetingUrl: string }; profiles: { name: string, remoteId: any; }[]; }) => {
                     return (
-                        <Box width="400px" mx="auto" rounded="lg" shadow="md" maxW="2xl">
-                            <Box p={6}>
+                        <Box width="350px" mx="auto" rounded="lg" shadow="md" maxW="2xl">
+                            <Box p={2}>
                                 <Box>
                                     <chakra.span
                                         fontSize="sm"

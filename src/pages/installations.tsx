@@ -17,6 +17,7 @@ import {
 import { Layout, Seo } from '../components';
 import { CreateFriendlyUrl } from '../helpers';
 import { SearchIcon } from '@chakra-ui/icons';
+import { node } from 'prop-types';
 
 const InstallationPage = () => {
   const data: any = useStaticQuery(graphql`
@@ -38,9 +39,25 @@ const InstallationPage = () => {
           }
         }
       }
+      allGraphCmsProject {
+        nodes {
+          elements {
+            ... on GraphCMS_Installation {
+              remoteId
+              title
+            }
+          }
+        }
+      }
     }
   `);
   console.log(data.installations.nodes);
+
+  const specialIds = data.allGraphCmsProject.nodes.map((node: { elements: { remoteId: any; }[]; }) => node.elements[0].remoteId)
+
+  console.log(specialIds)
+
+  data.installations.nodes = data.installations.nodes.filter((node: { remoteId: any; }) => specialIds.includes(node.remoteId) == false)
 
   const entryOne = Math.floor(Math.random() * data.installations.nodes.length)
   const entryTwo = Math.floor(Math.random() * data.installations.nodes.length)

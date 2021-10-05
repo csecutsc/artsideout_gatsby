@@ -60,31 +60,29 @@ const InstallationTemplate = ({ data }: PropType) => {
   return (
     <Layout>
       <Seo title={data.installation.title} />
-
+      <Heading
+        as={Text}
+        size="xl"
+        fontWeight="bold"
+        color="#E81D77"
+        textAlign={['center', 'center', 'left', 'left']}
+      >
+        {data.installation.title}
+      </Heading>
       <Grid
         templateRows="repeat(2, 1fr)"
         templateColumns="repeat(4, 1fr)"
         gap={4}
       >
-        <GridItem rowSpan={2} colSpan={2} bg="tomato">
+        <GridItem rowSpan={2} colSpan={2}>
           {images.length !== 0 ? (
             <ImageGallery items={images} showIndex={true} lazyLoad={true} />
           ) : null}
         </GridItem>
-        <GridItem colSpan={2}>
-          <Heading
-            as={Text}
-            size="xl"
-            fontWeight="bold"
-            color="#E81D77"
-            textAlign={['center', 'center', 'left', 'left']}
-          >
-            {data.installation.title}
-          </Heading>
-        </GridItem>
+
         <GridItem colSpan={2}>
           <Box>
-            <Stack direction="row" h="100px" p={4}>
+            <Stack direction="column" p={4}>
               <Divider orientation="vertical" />
               <MDXRenderer>
                 {data.installation.description.markdownNode.childMdx.body}

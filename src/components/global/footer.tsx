@@ -1,5 +1,7 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useState } from 'react';
 import ReactAudioPlayer from 'react-audio-player';
+import AudioPlayer from 'react-h5-audio-player';
+import 'react-h5-audio-player/lib/styles.css';
 
 import {
   Box,
@@ -30,6 +32,14 @@ const ListHeader = ({ children }: { children: ReactNode }) => {
 
 const Footer = () => {
 
+  const urls = ["http://docs.google.com/uc?export=open&id=1E7pDYufD0Mfxh_k5Nm7DhtIN_KpTDdVL",
+    "http://docs.google.com/uc?export=open&id=1zpsTpMFZb81WT7FAIZc7gEiSuW752Kva",
+    "http://docs.google.com/uc?export=open&id=1sjdRbyb_ZEMQ5CO6gT7DV3kotyc71Ol_",
+    "http://docs.google.com/uc?export=open&id=1mAQjp5gw2kSUjyEvPVJ-ibYmHp8DWGI1",
+    "http://docs.google.com/uc?export=open&id=1OtD_SSycLd5OdE5j1M31Md2J1gza3ujx"]
+
+  const [index, setIndex] = useState(1)
+  console.log(index)
   return (
     <Box
       bg={useColorModeValue('gray.50', 'gray.900')}
@@ -37,12 +47,14 @@ const Footer = () => {
     >
       <Container as={Stack} maxW={'7xl'} py={10}>
         <Center paddingBottom="20px">
-          <ReactAudioPlayer
-            src="http://docs.google.com/uc?export=open&id=1G7f19wJ2j_6qw-BbzdxAucoszDGUyACF"
+          <AudioPlayer
+            src={urls[index]}
             autoPlay
-            controls
+            showSkipControls={true}
             volume={0.2}
-          />
+            onClickPrevious={(e) => { e.preventDefault(); setIndex((index + 1) % urls.length); console.log(index) }}
+            onClickNext={(e) => { e.preventDefault(); setIndex((index + 1) % urls.length); console.log(index) }}
+          ></AudioPlayer>
         </Center>
         <SimpleGrid
           templateColumns={{ sm: '1fr 1fr', md: '2fr 1fr 1fr 1fr 1fr' }}

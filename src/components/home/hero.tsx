@@ -63,8 +63,8 @@ const Hero = () => {
             </Button>
           </GatsbyLink>
         </Stack>
-        <Box w={{ base: '60%', sm: '50%', md: '40%' }} mb={{ base: 12, md: 0 }}>
-          <StaticImage src="../../images/aso_logo.jpg" alt="" />
+        <Box mb={{ base: 12, md: 0 }}>
+          <StaticImage src="../../images/aso_logo.jpg" alt="" height={300} />
         </Box>
       </Flex>
     </Box>

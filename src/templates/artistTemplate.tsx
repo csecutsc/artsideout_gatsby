@@ -20,6 +20,9 @@ const ArtistTemplate = ({ data }: PropType) => {
     navigate('/404');
     return null;
   }
+
+  console.log(data)
+
   return (
     <Layout>
       <Seo title={data.artist.name} />
