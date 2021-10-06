@@ -2,7 +2,6 @@ import React, { ReactNode, useState } from 'react';
 import ReactAudioPlayer from 'react-audio-player';
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
-
 import {
   Box,
   Center,
@@ -32,7 +31,7 @@ const ListHeader = ({ children }: { children: ReactNode }) => {
 
 const Footer = () => {
 
-  const urls = [{
+  const [urls, setUrls] = useState([{
     "url": "https://docs.google.com/uc?export=open&id=1E7pDYufD0Mfxh_k5Nm7DhtIN_KpTDdVL",
     "title": "Aquaribliz - Endurance Orchestral Club"
   },
@@ -51,9 +50,9 @@ const Footer = () => {
   {
     "url": "https://docs.google.com/uc?export=open&id=1OtD_SSycLd5OdE5j1M31Md2J1gza3ujx",
     "title": "Ryan Bucao"
-  }]
+  }])
 
-  const [index, setIndex] = useState(Math.ceil(Math.random() * urls.length))
+  const [index, setIndex] = useState(Math.ceil(Math.random() * 4))
   console.log(index)
   return (
     <Box
