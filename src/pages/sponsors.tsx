@@ -55,7 +55,7 @@ const SponsorsPage = () => {
                 <img src={sponsor.logo.url} />
                 <Heading
                   as={Text}
-                  size="lg"
+                  size="sm"
                   color="#E81D77"
                   textAlign={['center', 'center', 'left', 'left']}
                 >{sponsor.name}</Heading>
@@ -76,12 +76,13 @@ const SponsorsPage = () => {
       <div style={{ flexWrap: "wrap", display: "flex", flexDirection: "row", justifyContent: "flex-start" }}>
         {partners.map((sponsor: { logo: { url: string }; name: string; }) => {
           return (
-            <Box padding="10px" width="200px" height="250px" margin="20px" rounded="lg" shadow="md" maxW="2xl">
+            <Box padding="10px" width="200px" margin="20px" rounded="lg" shadow="md" maxW="2xl">
               <Flex flexWrap="wrap" justifyContent="start" alignItems="center" direction="column">
                 <img src={sponsor.logo.url} />
                 <Heading
                   as={Text}
-                  size="lg"
+                  marginTop="10px"
+                  size="sm"
                   color="#E81D77"
                   textAlign={['center', 'center', 'left', 'left']}
                 >{sponsor.name}</Heading>
