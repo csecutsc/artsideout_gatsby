@@ -81,7 +81,7 @@ const Workshops = () => {
                         Join Meeting
                       </Link>
                     </Button>
-                    <Link href={`/artist/${CreateFriendlyUrl(event.profiles[0].name, event.profiles[0].remoteId)}`} fontWeight="bold">
+                    <Link target="_blank" href={`/artist/${CreateFriendlyUrl(event.profiles[0].name, event.profiles[0].remoteId)}`} fontWeight="bold">
                       {event.profiles[0].name}
                     </Link>
                   </Flex>
