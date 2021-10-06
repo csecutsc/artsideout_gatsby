@@ -70,7 +70,7 @@ const PerformancesPage = () => {
                                         fontSize="sm"
                                         color={useColorModeValue('gray.600', 'gray.300')}
                                     >
-                                        {new Date(event.startTime).toDateString()}
+
                                     </chakra.span>
                                     <Link
                                         display="block"
@@ -91,7 +91,7 @@ const PerformancesPage = () => {
                                                 View Recording
                                             </Link>
                                         </Button>
-                                        <Link href={CreateFriendlyUrl(event.profiles[0].name, event.profiles[0].remoteId)} fontWeight="bold">
+                                        <Link target="_blank" href={`/artist/${CreateFriendlyUrl(event.profiles[0].name, event.profiles[0].remoteId)}`} fontWeight="bold">
                                             {event.profiles[0].name}
                                         </Link>
                                     </Flex>

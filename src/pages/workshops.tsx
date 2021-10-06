@@ -33,14 +33,9 @@ const Workshops = () => {
   `);
 
   const upcoming = data.activities.nodes.filter((meeting: { startTime: string | number | Date; zoomMeeting: { meetingUrl: string } }) => {
-    return new Date(meeting.startTime) > new Date() && meeting.zoomMeeting
+    return meeting.zoomMeeting
   })
 
-  const past = data.activities.nodes.filter((meeting: { startTime: string | number | Date; zoomMeeting: { meetingUrl: string } }) => {
-    return new Date(meeting.startTime) < new Date() && meeting.zoomMeeting
-  });
-
-  console.log(upcoming)
 
 
   return (
@@ -65,7 +60,7 @@ const Workshops = () => {
                     fontSize="sm"
                     color={useColorModeValue('gray.600', 'gray.300')}
                   >
-                    {new Date(event.startTime).toDateString()}
+                    {new Date(event.startTime).toLocaleTimeString() + " - " + new Date(event.endTime).toLocaleTimeString()}
                   </chakra.span>
                   <Link
                     display="block"
@@ -86,7 +81,7 @@ const Workshops = () => {
                         Join Meeting
                       </Link>
                     </Button>
-                    <Link href={CreateFriendlyUrl(event.profiles[0].name, event.profiles[0].remoteId)} fontWeight="bold">
+                    <Link href={`/artist/${CreateFriendlyUrl(event.profiles[0].name, event.profiles[0].remoteId)}`} fontWeight="bold">
                       {event.profiles[0].name}
                     </Link>
                   </Flex>
@@ -97,61 +92,6 @@ const Workshops = () => {
         })}
       </SimpleGrid>
 
-      <Divider />
-      <Heading
-        as={Text}
-        size="xl"
-        fontWeight="bold"
-        color="#E81D77"
-        textAlign={['center', 'center', 'left', 'left']}
-      >
-        Past Workshops
-      </Heading>
-      <SimpleGrid columns={[1, 1, 3]} spacing={2}>
-        {past.map((event: { startTime: Date; endTime: Date; title: string; videoUrl: string; zoomMeeting: { meetingUrl: string }; profiles: { name: string, remoteId: any; }[]; }) => {
-          return (
-            <Box width="400px" mx="auto" rounded="lg" shadow="md" maxW="2xl">
-              <Box p={6}>
-                <Box>
-                  <chakra.span
-                    fontSize="sm"
-                    color={useColorModeValue('gray.600', 'gray.300')}
-                  >
-                    {new Date(event.startTime).toDateString()}
-                  </chakra.span>
-                  <Link
-                    display="block"
-                    // color={useColorModeValue('gray.800', 'white')}
-                    fontWeight="bold"
-                    fontSize="2xl"
-                    mt={2}
-                    _hover={{ color: 'gray.600', textDecor: 'underline' }}
-                  >
-                    {event.title}
-                  </Link>
-                </Box>
-
-                <Box mt={4}>
-                  <Flex dir="row" alignItems="center" justify="space-between">
-                    {event.videoUrl ?
-                      <Button>
-                        <Link href={event.videoUrl}>
-                          Recording
-                        </Link>
-                      </Button>
-                      :
-                      <div />
-                    }
-                    <Link href={CreateFriendlyUrl(event.profiles[0].name, event.profiles[0].remoteId)} fontWeight="bold">
-                      {event.profiles[0].name}
-                    </Link>
-                  </Flex>
-                </Box>
-              </Box>
-            </Box>
-          )
-        })}
-      </SimpleGrid>
     </Layout>
   );
 };

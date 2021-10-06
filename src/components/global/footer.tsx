@@ -32,13 +32,28 @@ const ListHeader = ({ children }: { children: ReactNode }) => {
 
 const Footer = () => {
 
-  const urls = ["http://docs.google.com/uc?export=open&id=1E7pDYufD0Mfxh_k5Nm7DhtIN_KpTDdVL",
-    "http://docs.google.com/uc?export=open&id=1sjdRbyb_ZEMQ5CO6gT7DV3kotyc71Ol_",
-    "http://docs.google.com/uc?export=open&id=1zpsTpMFZb81WT7FAIZc7gEiSuW752Kva",
-    "http://docs.google.com/uc?export=open&id=1mAQjp5gw2kSUjyEvPVJ-ibYmHp8DWGI1",
-    "http://docs.google.com/uc?export=open&id=1OtD_SSycLd5OdE5j1M31Md2J1gza3ujx"]
+  const urls = [{
+    "url": "https://docs.google.com/uc?export=open&id=1E7pDYufD0Mfxh_k5Nm7DhtIN_KpTDdVL",
+    "title": "Aquaribliz - Endurance Orchestral Club"
+  },
+  {
+    "url": "https://docs.google.com/uc?export=open&id=1sjdRbyb_ZEMQ5CO6gT7DV3kotyc71Ol_",
+    "title": "Meera - Endurance Flute Quintet"
+  },
+  {
+    "url": "https://docs.google.com/uc?export=open&id=1zpsTpMFZb81WT7FAIZc7gEiSuW752Kva",
+    "title": "Kelcie - Emotions"
+  },
+  {
+    "url": "https://docs.google.com/uc?export=open&id=1mAQjp5gw2kSUjyEvPVJ-ibYmHp8DWGI1",
+    "title": "Michael - Endurance Medley"
+  },
+  {
+    "url": "https://docs.google.com/uc?export=open&id=1OtD_SSycLd5OdE5j1M31Md2J1gza3ujx",
+    "title": "Ryan Bucao"
+  }]
 
-  const [index, setIndex] = useState(0)
+  const [index, setIndex] = useState(Math.ceil(Math.random() * urls.length))
   console.log(index)
   return (
     <Box
@@ -47,9 +62,11 @@ const Footer = () => {
     >
       <Container as={Stack} maxW={'7xl'} py={10}>
         <Center paddingBottom="20px">
+          <Text color="#E81D77" fontWeight={'700'} fontSize={'lg'} mb={2}>
+            {urls[index].title}
+          </Text>
           <AudioPlayer
-            src={urls[index]}
-            autoPlay
+            src={urls[index].url}
             showSkipControls={true}
             volume={0.2}
             onClickPrevious={(e) => { e.preventDefault(); setIndex((index - 1) % urls.length); console.log(index) }}

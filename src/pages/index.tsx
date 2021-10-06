@@ -1,7 +1,6 @@
 import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import { Text, Flex, Heading } from '@chakra-ui/react';
-import '../images/Styles.module.css'
 import { Layout, Seo } from '../components';
 import { Hero } from '../components/home/';
 import { schedhule, land, about, mission, aboutEndurance, remarks, studio, performances, speicalProjects, thankYou, team } from '../components/constants/data'

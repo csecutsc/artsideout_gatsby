@@ -50,18 +50,6 @@ const Hero = () => {
             “ENDURANCE” is the ability to resist through and recover from
             adversity.
           </Heading>
-          <GatsbyLink to="/installations">
-            <Button
-              colorScheme="primary"
-              borderRadius="8px"
-              py="4"
-              px="4"
-              lineHeight="1"
-              size="md"
-            >
-              View Installations
-            </Button>
-          </GatsbyLink>
         </Stack>
         <Box mb={{ base: 12, md: 0 }}>
           <StaticImage src="../../images/aso_logo.jpg" alt="" height={300} />

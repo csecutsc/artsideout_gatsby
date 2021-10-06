@@ -74,7 +74,7 @@ const ArtistTemplate = ({ data }: PropType) => {
         })}
       </Flex>
 
-      {data.artist.installations ? (
+      {/* {data.artist.installations ? (
         <div>
           <Heading
             as={Text}
@@ -99,7 +99,7 @@ const ArtistTemplate = ({ data }: PropType) => {
             )}
           </SimpleGrid>
         </div>
-      ) : null}
+      ) : null} */}
 
       {/* <SimpleGrid columns={[2, null, 3]} autoFlow="row dense">
         {data.artist.performances.images.map((image: any, i: number) => (

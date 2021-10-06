@@ -67,7 +67,7 @@ const InstallationPage = () => {
   const preview = [data.installations.nodes[entryOne], data.installations.nodes[entryTwo],
   data.installations.nodes[entryThree], data.installations.nodes[entryFour]]
 
-  const [isPreview, setIsPreview] = useState(true)
+  const [isPreview, setIsPreview] = useState(false)
 
   // data.installations.nodes.splice(entryOne, 1)
   // data.installations.nodes.splice(entryTwo, 1)
@@ -196,11 +196,6 @@ const InstallationPage = () => {
           ))}
 
       </SimpleGrid>
-      <Button width="200px" marginTop="20px" onClick={() => {
-        setIsPreview(!isPreview)
-      }}>
-        {isPreview ? "See More" : "See Less"}
-      </Button>
     </Layout>
   );
 };

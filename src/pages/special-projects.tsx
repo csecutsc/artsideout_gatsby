@@ -184,7 +184,7 @@ const SpecialProjects = () => {
         color="#E81D77"
         textAlign={['center', 'center', 'left', 'left']}
       >
-        Featured Performances
+        Special Projects
       </Heading>
 
       <Heading
@@ -197,7 +197,7 @@ const SpecialProjects = () => {
         marginBottom="30px"
         textAlign={['center', 'center', 'left', 'left']}
       >
-        Performances currated by the ARTSIDEOUT team.
+        Projects curated and commissioned by the ARTSIDEOUT team.
       </Heading>
 
 
@@ -233,7 +233,7 @@ const SpecialProjects = () => {
                         View Recording
                       </Link>
                     </Button>
-                    <Link href={`/artist/${CreateFriendlyUrl(event.profiles[0].name, event.profiles[0].remoteId)}`} fontWeight="bold">
+                    <Link target="_blank" href={`/artist/${CreateFriendlyUrl(event.profiles[0].name, event.profiles[0].remoteId)}`} fontWeight="bold">
                       {event.profiles[0].name}
                     </Link>
                   </Flex>

@@ -24,6 +24,7 @@ export interface ProfileData {
       };
     };
   };
+  remoteId: string;
   profileType: [];
   image: ImageData[];
   installations: InstallationData[];
