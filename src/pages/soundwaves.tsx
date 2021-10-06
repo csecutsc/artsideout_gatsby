@@ -109,17 +109,9 @@ const MarketPage = () => {
         size="md"
         fontWeight="normal"
         textAlign={['center', 'center', 'left', 'left']}
-        marginBottom="20px"
+        marginBottom="40px"
       >
-        <Heading
-          as={Text}
-          size="md"
-          fontWeight="normal"
-          textAlign={['center', 'center', 'left', 'left']}
-          marginBottom="40px"
-        >
-          SoundWaves is UTSC’s newest and only music composition club. We meet online every Tuesday 1-2pm on zoom, and hopefully soon in person. At SoundWaves we write or contribute to new works of music every week. Our meetings are centered around the sharing of our weekly assigned projects and other collaborations in music. We are open to anyone who is interested in music composition and most meetings are free for drop in. To become a member of SoundWaves, please join our discord and introduce yourself there!
-        </Heading>
+        This year, SoundWaves and ARTSIDEOUT have come together to share music relating to the theme of Endurance. Feel free to check out all the composers and their bios down below. You can listen to the playlist of Endurance in the media player.
       </Heading>
 
       <SimpleGrid columns={[1, 1, 2]} spacing={4}>
