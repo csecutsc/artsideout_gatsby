@@ -35,6 +35,7 @@ const SpecialProjects = () => {
               remoteId
               profiles{
                 name
+                remoteId
               }
               images {
                 gatsbyImageData(width: 500, height: 500)
@@ -49,6 +50,7 @@ const SpecialProjects = () => {
               id
               title
               startTime
+              videoUrl
               profiles {
                 remoteId
                 name
@@ -57,6 +59,7 @@ const SpecialProjects = () => {
           }
           profiles {
             name
+            remoteId
           }
         }
       }
@@ -199,7 +202,8 @@ const SpecialProjects = () => {
 
 
       <Flex flexWrap={"wrap"} flexDirection="row" justifyContent="flex-start" alignContent="flex-start">
-        {performance.map((event: { videoUrl: string; startTime: Date; endTime: Date; title: string; zoomMeeting: { meetingUrl: string }; profiles: { name: string, remoteId: any; }[]; }) => {
+        {performance.map((event: { elements: { videoUrl: string }[]; startTime: Date; endTime: Date; title: string; zoomMeeting: { meetingUrl: string }; profiles: { name: string, remoteId: any; }[]; }) => {
+          console.log(CreateFriendlyUrl(event.profiles[0].name, event.profiles[0].remoteId))
           return (
             <Box width="350px" mx="auto" rounded="lg" shadow="md" maxW="2xl">
               <Box p={2}>
@@ -225,11 +229,11 @@ const SpecialProjects = () => {
                 <Box mt={4}>
                   <Flex dir="row" alignItems="center" justify="space-between">
                     <Button>
-                      <Link href={event.videoUrl}>
+                      <Link target="_blank" href={event.elements[0].videoUrl}>
                         View Recording
                       </Link>
                     </Button>
-                    <Link href={CreateFriendlyUrl(event.profiles[0].name, event.profiles[0].remoteId)} fontWeight="bold">
+                    <Link href={`/artist/${CreateFriendlyUrl(event.profiles[0].name, event.profiles[0].remoteId)}`} fontWeight="bold">
                       {event.profiles[0].name}
                     </Link>
                   </Flex>

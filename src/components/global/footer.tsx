@@ -33,12 +33,12 @@ const ListHeader = ({ children }: { children: ReactNode }) => {
 const Footer = () => {
 
   const urls = ["http://docs.google.com/uc?export=open&id=1E7pDYufD0Mfxh_k5Nm7DhtIN_KpTDdVL",
-    "http://docs.google.com/uc?export=open&id=1zpsTpMFZb81WT7FAIZc7gEiSuW752Kva",
     "http://docs.google.com/uc?export=open&id=1sjdRbyb_ZEMQ5CO6gT7DV3kotyc71Ol_",
+    "http://docs.google.com/uc?export=open&id=1zpsTpMFZb81WT7FAIZc7gEiSuW752Kva",
     "http://docs.google.com/uc?export=open&id=1mAQjp5gw2kSUjyEvPVJ-ibYmHp8DWGI1",
     "http://docs.google.com/uc?export=open&id=1OtD_SSycLd5OdE5j1M31Md2J1gza3ujx"]
 
-  const [index, setIndex] = useState(1)
+  const [index, setIndex] = useState(0)
   console.log(index)
   return (
     <Box
@@ -52,7 +52,7 @@ const Footer = () => {
             autoPlay
             showSkipControls={true}
             volume={0.2}
-            onClickPrevious={(e) => { e.preventDefault(); setIndex((index + 1) % urls.length); console.log(index) }}
+            onClickPrevious={(e) => { e.preventDefault(); setIndex((index - 1) % urls.length); console.log(index) }}
             onClickNext={(e) => { e.preventDefault(); setIndex((index + 1) % urls.length); console.log(index) }}
           ></AudioPlayer>
         </Center>

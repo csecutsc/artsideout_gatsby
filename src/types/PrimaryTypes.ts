@@ -15,6 +15,7 @@ export interface InstallationData {
 }
 
 export interface ProfileData {
+  socialLink: any;
   name: string;
   description: {
     markdownNode: {
