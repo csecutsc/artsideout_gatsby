@@ -75,7 +75,8 @@ const aboutEndurance = [
 
 const remarks = [
     {
-        "name": "Remarks from the Director of Operations: You-Jin Kim",
+        "name": "You-Jin Kim",
+        "title": "Director of Operations",
         "remarks": [
             {
                 "text": "It’s been a wild journey. From performing as a confused and lost first-year student in 2019, to becoming a Performance Curator in 2020, to finally taking on the role of the Director of Operations in 2021, I really can’t believe I actually made it here. ARTSIDEOUT has truly been with me in every step of my university experience, and I’m so glad that I was able to be a part of it. It’s incredible to see how art can truly connect people from all ends of the globe in ways that little else can. When the COVID-19 pandemic was at its height, and multiple incidents around the world had me feeling like there was nothing good left in this world, music was what kept me going, and writing was the outlet that helped me let out my emotions. Art, in many ways, helps us endure through and through, even when we are at our lowest."
@@ -89,7 +90,8 @@ const remarks = [
         ]
     },
     {
-        "name": "Remarks from the Artistic Director: Rachel Wang",
+        "name": "Rachel Wang",
+        "title": "Artistic Director",
         "remarks": [
             {
                 "text": "The prolonged pandemic has made us farther apart from each other and brought many obstacles to our daily lives. In hopes of returning to our life without COVID-19, we must withstand any hardships that are placed upon us and continue adapting. This year’s theme stems from the challenges our world has faced during these difficult times. The artists have come together to shed light on the ways they have coped with situations surpassing the pandemic. From personal to social issues, the artwork shows what endurance means to each artist and the different experiences or achievements they acquired as a result. "
@@ -103,7 +105,8 @@ const remarks = [
         ]
     },
     {
-        "name": "Remarks from the Director of Community Relations: Jo Anne Snell",
+        "name": "Jo Anne Snell",
+        "title": "Director of Community Relations",
         "remarks": [
             {
                 "text": "ARTSIDEOUT has had to adapt as we all have. That adaptation has what I believe, opened the door for ARTSIDEOUT to be bigger and better than in person, and I hope I can be there to see that even though I am graduating soon. I am proud of my journey with ASO, as unexpected as it may be. I never thought I would love the arts management aspects of my position as I have at ASO. Coming to UTSC in 2018, I had come as a last choice of program and had no idea what Arts Management is. Now I am really embodying all that I was told an Arts Manager does from my first class. I am wearing all the hats, and I am grateful that ARTSIDEOUT is one of those hats. Because of ASO and UTSC, I am where I am. Currently, I hold executive positions in three UTSC clubs, I have co-founded a new non-profit organization (StereoVisual), and of course, I hold the Director of Community Relations and Outreach position at ASO. I am, and forever will be grateful for the time I spent engaging with the arts at ASO and UTSC."
@@ -117,7 +120,8 @@ const remarks = [
         ]
     },
     {
-        "name": "Remarks from Barry Freeman, Chair and Associate Professor of the Department of Arts, Culture and Media",
+        "name": "Barry Freeman",
+        "title": "Chair and Associate Professor of the Department of Arts, Culture and Media",
         "remarks": [
             {
                 "text": "I extend my congratulations to the entire ArtSideOut leadership for once again finding a way to stage our student-run festival in spite of the obstacles. Your chosen theme this year, endurance, certainly captures the mood of the moment. We all feel like we've been dealing with the pandemic for longer than we expected. Without understating the impact this has had on us all, I have to say as Chair of Arts, Culture & Media that I have been constantly impressed by our community's capability to adapt. Sometimes I find comfort in stepping back and thinking about all that humans everywhere have endured for centuries, millennia, and how making art has been a solace for us the whole time, as a means for us to hope, to commune, to protest, to cry out, to reveal, to teach, to heal. Here in our community, ArtSideOut has been there to give our students the space for all those experiences, participating in this ancient practice. Thank you for your hard work. It matters."

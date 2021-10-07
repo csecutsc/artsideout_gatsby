@@ -13,10 +13,19 @@
 //   );
 // }
 import React from 'react';
-import { Text, Heading, Flex, Avatar, Box } from '@chakra-ui/react';
+import {
+  Text,
+  Heading,
+  Flex,
+  Avatar,
+  Box,
+  Stack,
+  SimpleGrid
+} from '@chakra-ui/react';
 
 import { Layout, Seo } from '../components';
 import { graphql, useStaticQuery } from 'gatsby';
+import { GatsbyImage } from 'gatsby-plugin-image';
 
 const SponsorsPage = () => {
   const data: any = useStaticQuery(graphql`
@@ -26,7 +35,8 @@ const SponsorsPage = () => {
           name
           isPartner
           logo {
-            url
+            gatsbyImageData(width: 200)
+            altText
           }
         }
       }
@@ -42,115 +52,81 @@ const SponsorsPage = () => {
 
   return (
     <Layout>
-      <Heading
-        as={Text}
-        size="lg"
-        fontWeight="bold"
-        color="#E81D77"
-        textAlign={['center', 'center', 'left', 'left']}
-      >
-        Thank you to all of our Sponsors and Partners who helped ARTSIDEOUT 2021
-        be what it is today.
-      </Heading>
-      <Heading
-        as={Text}
-        size="xl"
-        fontWeight="bold"
-        color="#E81D77"
-        textAlign={['center', 'center', 'left', 'left']}
-      >
-        Sponsors
-      </Heading>
-      <div
-        style={{
-          flexWrap: 'wrap',
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'flex-start'
-        }}
-      >
-        {sponsored.map((sponsor: { logo: { url: string }; name: string }) => {
-          return (
-            <Box
-              padding="10px"
-              width="200px"
-              height="250px"
-              margin="20px"
-              rounded="lg"
-              shadow="md"
-              maxW="2xl"
-            >
-              <div
-                style={{
-                  flexWrap: 'wrap',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'center',
-                  alignItems: 'center'
-                }}
-              >
-                <img src={sponsor.logo.url} />
-                <Heading
-                  as={Text}
-                  size="sm"
-                  color="#E81D77"
-                  textAlign={['center', 'center', 'left', 'left']}
-                >
-                  {sponsor.name}
-                </Heading>
-              </div>
-            </Box>
-          );
-        })}
-      </div>
-      <Heading
-        as={Text}
-        size="xl"
-        fontWeight="bold"
-        color="#E81D77"
-        textAlign={['center', 'center', 'left', 'left']}
-      >
-        Partners
-      </Heading>
-      <div
-        style={{
-          flexWrap: 'wrap',
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'flex-start'
-        }}
-      >
-        {partners.map((sponsor: { logo: { url: string }; name: string }) => {
-          return (
-            <Box
-              padding="10px"
-              width="200px"
-              margin="20px"
-              rounded="lg"
-              shadow="md"
-              maxW="2xl"
-            >
-              <Flex
-                flexWrap="wrap"
-                justifyContent="start"
-                alignItems="center"
-                direction="column"
-              >
-                <img src={sponsor.logo.url} />
-                <Heading
-                  as={Text}
-                  marginTop="10px"
-                  size="sm"
-                  color="#E81D77"
-                  textAlign={['center', 'center', 'left', 'left']}
-                >
-                  {sponsor.name}
-                </Heading>
-              </Flex>
-            </Box>
-          );
-        })}
-      </div>
+      <Stack spacing={4} align="stretch">
+        <Heading
+          as={Text}
+          size="lg"
+          fontWeight="bold"
+          textAlign={['center', 'center', 'left', 'left']}
+        >
+          Thank you to all of our Sponsors and Partners who helped ARTSIDEOUT
+          2021 be what it is today.
+        </Heading>
+        <Heading
+          as={Text}
+          size="xl"
+          fontWeight="bold"
+          color="#E81D77"
+          textAlign={['center', 'center', 'left', 'left']}
+        >
+          Sponsors
+        </Heading>
+        <SimpleGrid columns={[1, 2, 4]} spacing={4} align="stretch">
+          {sponsored.map((sponsor: any) => {
+            return (
+              <Box rounded="lg" shadow="md" maxW="xl" padding={5}>
+                <Stack spacing={2} align="stretch">
+                  <GatsbyImage
+                    objectFit="cover"
+                    image={sponsor.logo.gatsbyImageData}
+                    alt={sponsor.name}
+                  />
+                  <Heading
+                    as={Text}
+                    size="sm"
+                    color="#E81D77"
+                    textAlign={['center', 'center', 'center', 'center']}
+                  >
+                    {sponsor.name}
+                  </Heading>
+                </Stack>
+              </Box>
+            );
+          })}
+        </SimpleGrid>
+        <Heading
+          as={Text}
+          size="xl"
+          fontWeight="bold"
+          color="#E81D77"
+          textAlign={['center', 'center', 'left', 'left']}
+        >
+          Partners
+        </Heading>
+        <SimpleGrid columns={[1, 2, 4]} spacing={4} align="stretch">
+          {partners.map((sponsor: any) => {
+            return (
+              <Box rounded="lg" shadow="md" maxW="xl" padding={5}>
+                <Stack spacing={2} align="stretch">
+                  <GatsbyImage
+                    objectFit="cover"
+                    image={sponsor.logo.gatsbyImageData}
+                    alt={sponsor.name}
+                  />
+                  <Heading
+                    as={Text}
+                    size="sm"
+                    color="#E81D77"
+                    textAlign={['center', 'center', 'center', 'center']}
+                  >
+                    {sponsor.name}
+                  </Heading>
+                </Stack>
+              </Box>
+            );
+          })}
+        </SimpleGrid>
+      </Stack>
     </Layout>
   );
 };

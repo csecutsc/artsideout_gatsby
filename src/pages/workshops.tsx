@@ -115,7 +115,7 @@ const Workshops = () => {
               color="#E81D77"
               textAlign={['center', 'center', 'left', 'left']}
             >
-              Happening Now
+              Happening Now!
             </Heading>
             <SimpleGrid columns={[1, 2, 3]} spacing={2}>
               {currentWorkshops.map((event: any, i: number) => {
