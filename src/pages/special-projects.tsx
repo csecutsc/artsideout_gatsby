@@ -87,7 +87,7 @@ const SpecialProjects = () => {
 
   return (
     <Layout>
-      <Seo title="Installations" />
+      <Seo title="Special Projects" />
       {/* <InputGroup>
         <InputLeftElement
           pointerEvents="none"
@@ -107,7 +107,7 @@ const SpecialProjects = () => {
         color="#E81D77"
         textAlign={['center', 'center', 'left', 'left']}
       >
-        Featured Collections
+        Special Projects
       </Heading>
 
       <Heading
