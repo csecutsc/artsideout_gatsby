@@ -19,7 +19,7 @@ import ImageGallery from 'react-image-gallery';
 import Layout from '../components/layout';
 import Seo from '../components/seo';
 import PropTypes from 'prop-types';
-import { InstallationData } from '../types/PrimaryTypes';
+import { ActivityData } from '../types/PrimaryTypes';
 import { CreateFriendlyUrl } from '../helpers';
 
 // const images = [
@@ -39,27 +39,18 @@ import { CreateFriendlyUrl } from '../helpers';
 
 interface PropType {
   data: {
-    installation: InstallationData;
+    workshop: any;
   };
 }
 
-const InstallationTemplate = ({ data }: PropType) => {
-  if (data.installation === null) {
+const WorkshopTemplate = ({ data }: PropType) => {
+  if (data.workshop === null) {
     navigate('/404');
     return null;
   }
-  const images = data.installation.images
-    .filter((image: any) => image.gatsbyImageData)
-    .map((image: any) => {
-      return {
-        original: 'image_path',
-        srcSet: image.gatsbyImageData.images.sources[0].srcSet,
-        originalAlt: image.altText ? image.altText : 'An Installation'
-      };
-    });
   return (
     <Layout>
-      <Seo title={data.installation.title} />
+      <Seo title={data.workshop.title} />
       <Heading
         as={Text}
         size="xl"
@@ -67,39 +58,53 @@ const InstallationTemplate = ({ data }: PropType) => {
         color="#E81D77"
         textAlign={['center', 'center', 'left', 'left']}
       >
-        {data.installation.title}
+        {data.workshop.title}
       </Heading>
 
       <Heading
         as={Text}
-        size="lg"
-        fontWeight="bold"
+        size="md"
         textAlign={['center', 'center', 'left', 'left']}
       >
         <Link
           target="_blank"
           href={`/artist/${CreateFriendlyUrl(
-            data.installation.profiles[0].name,
-            data.installation.profiles[0].remoteId
+            data.workshop.profiles[0].name,
+            data.workshop.profiles[0].remoteId
           )}`}
         >
-          {data.installation.profiles[0].name}
+          {data.workshop.profiles[0].name}
         </Link>
       </Heading>
 
       <Grid templateColumns="repeat(4, 1fr)" gap={4}>
-        <GridItem rowSpan={2} colSpan={2}>
-          {images.length !== 0 ? (
-            <ImageGallery items={images} showIndex={true} lazyLoad={true} />
-          ) : null}
-        </GridItem>
-
         <GridItem colSpan={2}>
           <Box>
-            <Stack direction="column" p={4}>
+            <Stack direction="column">
+              <Divider orientation="vertical" />
+              <GatsbyImage
+                image={
+                  data.workshop.images[0] &&
+                  data.workshop.images[0].localFile.childImageSharp
+                    ? data.workshop.images[0].localFile.childImageSharp
+                        .gatsbyImageData
+                    : ''
+                }
+                alt={
+                  data.workshop.images[0]
+                    ? data.workshop.images[0].altText
+                    : data.workshop.title
+                }
+              />
+            </Stack>
+          </Box>
+        </GridItem>
+        <GridItem colSpan={2}>
+          <Box>
+            <Stack direction="column">
               <Divider orientation="vertical" />
               <MDXRenderer>
-                {data.installation.description.markdownNode.childMdx.body}
+                {data.workshop.description.markdownNode.childMdx.body}
               </MDXRenderer>
             </Stack>
           </Box>
@@ -110,14 +115,21 @@ const InstallationTemplate = ({ data }: PropType) => {
 };
 
 export const data: any = graphql`
-  query GetInstallation($id: ID) {
-    installation: graphCmsInstallation(remoteId: { eq: $id }) {
+  query getWorkshop($id: ID) {
+    workshop: graphCmsActivity(remoteId: { eq: $id }) {
       remoteId
       title
       images {
-        gatsbyImageData(width: 300, placeholder: BLURRED, quality: 70)
-        altText
-        url
+        localFile {
+          childImageSharp {
+            gatsbyImageData(
+              width: 300
+              height: 300
+              placeholder: BLURRED
+              quality: 70
+            )
+          }
+        }
       }
       description {
         markdownNode {
@@ -134,8 +146,8 @@ export const data: any = graphql`
   }
 `;
 
-InstallationTemplate.propTypes = {
+WorkshopTemplate.propTypes = {
   data: PropTypes.node.isRequired
 };
 
-export default InstallationTemplate;
+export default WorkshopTemplate;

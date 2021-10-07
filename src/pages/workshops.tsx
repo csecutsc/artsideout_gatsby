@@ -1,46 +1,70 @@
 import React from 'react';
-import { Text, Heading, Divider, SimpleGrid, Box, chakra, Button, Flex, Link, useColorModeValue } from '@chakra-ui/react';
+import {
+  Text,
+  Heading,
+  Divider,
+  SimpleGrid,
+  Box,
+  chakra,
+  Button,
+  Flex,
+  Link,
+  useColorModeValue
+} from '@chakra-ui/react';
 
 import { Layout, Seo } from '../components';
 import { Card } from '../components/performances';
 import { graphql, useStaticQuery } from 'gatsby';
 import { CreateFriendlyUrl } from '../helpers';
+import { GatsbyImage } from 'gatsby-plugin-image';
 
 const Workshops = () => {
   const data: any = useStaticQuery(graphql`
     query GetAllWorkshops {
       activities: allGraphCmsActivity {
-          nodes{
-            description {
-              html
-            }
-            endTime
-            startTime
-            title
-            videoUrl
-            zoomMeeting {
-              meetingId
-              meetingPass
-              meetingUrl
-            }
-            profiles {
-              name
-              remoteId
+        nodes {
+          description {
+            html
+          }
+          endTime
+          startTime
+          title
+          remoteId
+          videoUrl
+          images {
+            gatsbyImageData(width: 500, height: 500)
+            localFile {
+              childImageSharp {
+                gatsbyImageData(width: 500)
+              }
             }
           }
+          zoomMeeting {
+            meetingId
+            meetingPass
+            meetingUrl
+          }
+          profiles {
+            name
+            remoteId
+          }
+        }
       }
     }
   `);
 
-  const upcoming = data.activities.nodes.filter((meeting: { startTime: string | number | Date; zoomMeeting: { meetingUrl: string } }) => {
-    return meeting.zoomMeeting
-  })
-
-
+  const upcoming = data.activities.nodes.filter(
+    (meeting: {
+      startTime: string | number | Date;
+      zoomMeeting: { meetingUrl: string };
+    }) => {
+      return meeting.zoomMeeting;
+    }
+  );
 
   return (
     <Layout>
-      <Seo title="Performances" />
+      <Seo title="Workshops" />
       <Heading
         as={Text}
         size="xl"
@@ -50,48 +74,92 @@ const Workshops = () => {
       >
         Upcoming Workshops
       </Heading>
-      <SimpleGrid columns={[1, 1, 3]} spacing={2}>
-        {upcoming.map((event: { startTime: Date; endTime: Date; title: string; zoomMeeting: { meetingUrl: string }; profiles: { name: string, remoteId: any; }[]; }) => {
+      <SimpleGrid columns={[1, 2, 3]} spacing={2}>
+        {upcoming.map((event: any, i: number) => {
           return (
-            <Box width="400px" mx="auto" rounded="lg" shadow="md" maxW="2xl">
+            <Box
+              height="auto"
+              width="auto"
+              mx="auto"
+              rounded="lg"
+              shadow="md"
+              maxW="2xl"
+            >
               <Box p={6}>
                 <Box>
                   <chakra.span
-                    fontSize="sm"
+                    fontSize="md"
                     color={useColorModeValue('gray.600', 'gray.300')}
                   >
-                    {new Date(event.startTime).toLocaleTimeString() + " - " + new Date(event.endTime).toLocaleTimeString()}
+                    {new Date(event.startTime).toLocaleTimeString([], {
+                      timeZoneName: 'short',
+                      hour: '2-digit',
+                      minute: '2-digit'
+                    }) +
+                      ' - ' +
+                      new Date(event.endTime).toLocaleTimeString([], {
+                        timeZoneName: 'short',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                      })}
                   </chakra.span>
                   <Link
                     display="block"
                     // color={useColorModeValue('gray.800', 'white')}
                     fontWeight="bold"
-                    fontSize="2xl"
+                    fontSize="xl"
                     mt={2}
                     _hover={{ color: 'gray.600', textDecor: 'underline' }}
+                    href={`/workshop/${CreateFriendlyUrl('', event.remoteId)}`}
                   >
                     {event.title}
                   </Link>
+                  <GatsbyImage
+                    objectFit="cover"
+                    image={
+                      event.images[0] &&
+                      event.images[0].localFile.childImageSharp
+                        ? event.images[0].localFile.childImageSharp
+                            .gatsbyImageData
+                        : ''
+                    }
+                    alt={
+                      event.images[0] ? event.images[0].altText : event.title
+                    }
+                  />
                 </Box>
 
                 <Box mt={4}>
                   <Flex dir="row" alignItems="center" justify="space-between">
-                    <Button>
-                      <Link href={event.zoomMeeting.meetingUrl}>
-                        Join Meeting
+                    {event.zoomMeeting && (
+                      <Button>
+                        <Link
+                          target="_blank"
+                          href={event.zoomMeeting.meetingUrl}
+                        >
+                          Join Meeting
+                        </Link>
+                      </Button>
+                    )}
+                    {event.profiles.length > 0 && (
+                      <Link
+                        target="_blank"
+                        href={`/artist/${CreateFriendlyUrl(
+                          event.profiles[0].name,
+                          event.profiles[0].remoteId
+                        )}`}
+                        fontWeight="bold"
+                      >
+                        {event.profiles[0].name}
                       </Link>
-                    </Button>
-                    <Link target="_blank" href={`/artist/${CreateFriendlyUrl(event.profiles[0].name, event.profiles[0].remoteId)}`} fontWeight="bold">
-                      {event.profiles[0].name}
-                    </Link>
+                    )}
                   </Flex>
                 </Box>
               </Box>
             </Box>
-          )
+          );
         })}
       </SimpleGrid>
-
     </Layout>
   );
 };

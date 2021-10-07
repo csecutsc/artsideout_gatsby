@@ -32,6 +32,7 @@ export interface ProfileData {
 }
 
 export interface ActivityData {
+  title: string,
   remoteId: string;
   description: {
     markdownNode: {

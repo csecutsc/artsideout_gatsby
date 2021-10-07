@@ -12,14 +12,15 @@ import {
   Box,
   Grid,
   GridItem,
-  Link
+  Link,
+  AspectRatio
 } from '@chakra-ui/react';
 import ImageGallery from 'react-image-gallery';
 
 import Layout from '../components/layout';
 import Seo from '../components/seo';
 import PropTypes from 'prop-types';
-import { InstallationData } from '../types/PrimaryTypes';
+import { ActivityData } from '../types/PrimaryTypes';
 import { CreateFriendlyUrl } from '../helpers';
 
 // const images = [
@@ -39,27 +40,18 @@ import { CreateFriendlyUrl } from '../helpers';
 
 interface PropType {
   data: {
-    installation: InstallationData;
+    performance: ActivityData;
   };
 }
 
-const InstallationTemplate = ({ data }: PropType) => {
-  if (data.installation === null) {
+const PerformanceTemplate = ({ data }: PropType) => {
+  if (data.performance === null) {
     navigate('/404');
     return null;
   }
-  const images = data.installation.images
-    .filter((image: any) => image.gatsbyImageData)
-    .map((image: any) => {
-      return {
-        original: 'image_path',
-        srcSet: image.gatsbyImageData.images.sources[0].srcSet,
-        originalAlt: image.altText ? image.altText : 'An Installation'
-      };
-    });
   return (
     <Layout>
-      <Seo title={data.installation.title} />
+      <Seo title={data.performance.title} />
       <Heading
         as={Text}
         size="xl"
@@ -67,7 +59,7 @@ const InstallationTemplate = ({ data }: PropType) => {
         color="#E81D77"
         textAlign={['center', 'center', 'left', 'left']}
       >
-        {data.installation.title}
+        {data.performance.title}
       </Heading>
 
       <Heading
@@ -79,27 +71,31 @@ const InstallationTemplate = ({ data }: PropType) => {
         <Link
           target="_blank"
           href={`/artist/${CreateFriendlyUrl(
-            data.installation.profiles[0].name,
-            data.installation.profiles[0].remoteId
+            data.performance.profiles[0].name,
+            data.performance.profiles[0].remoteId
           )}`}
         >
-          {data.installation.profiles[0].name}
+          {data.performance.profiles[0].name}
         </Link>
       </Heading>
 
       <Grid templateColumns="repeat(4, 1fr)" gap={4}>
-        <GridItem rowSpan={2} colSpan={2}>
-          {images.length !== 0 ? (
-            <ImageGallery items={images} showIndex={true} lazyLoad={true} />
-          ) : null}
+        <GridItem colSpan={3}>
+          <Box>
+            <Stack direction="column" p={4}>
+              <Divider orientation="vertical" />
+              <AspectRatio ratio={16 / 9}>
+                <iframe src={data.performance.videoUrl} />
+              </AspectRatio>
+            </Stack>
+          </Box>
         </GridItem>
-
-        <GridItem colSpan={2}>
+        <GridItem colSpan={1}>
           <Box>
             <Stack direction="column" p={4}>
               <Divider orientation="vertical" />
               <MDXRenderer>
-                {data.installation.description.markdownNode.childMdx.body}
+                {data.performance.description.markdownNode.childMdx.body}
               </MDXRenderer>
             </Stack>
           </Box>
@@ -110,8 +106,8 @@ const InstallationTemplate = ({ data }: PropType) => {
 };
 
 export const data: any = graphql`
-  query GetInstallation($id: ID) {
-    installation: graphCmsInstallation(remoteId: { eq: $id }) {
+  query getPerformance($id: ID) {
+    performance: graphCmsActivity(remoteId: { eq: $id }) {
       remoteId
       title
       images {
@@ -126,6 +122,7 @@ export const data: any = graphql`
           }
         }
       }
+      videoUrl
       profiles {
         name
         remoteId
@@ -134,8 +131,8 @@ export const data: any = graphql`
   }
 `;
 
-InstallationTemplate.propTypes = {
+PerformanceTemplate.propTypes = {
   data: PropTypes.node.isRequired
 };
 
-export default InstallationTemplate;
+export default PerformanceTemplate;

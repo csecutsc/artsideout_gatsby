@@ -21,8 +21,6 @@ const ArtistTemplate = ({ data }: PropType) => {
     return null;
   }
 
-  console.log(data)
-
   return (
     <Layout>
       <Seo title={data.artist.name} />
@@ -36,8 +34,6 @@ const ArtistTemplate = ({ data }: PropType) => {
       >
         {data.artist.name}
       </Heading>
-
-
 
       <Heading
         as="h2"
@@ -67,10 +63,11 @@ const ArtistTemplate = ({ data }: PropType) => {
         </Heading>
 
         {data.artist.socialLink.map((link: any) => {
-          console.log(link)
           return (
-            <Link target="_blank" marginLeft="15px" href={link.url}>{link.label}</Link>
-          )
+            <Link target="_blank" marginLeft="15px" href={link.url}>
+              {link.label}
+            </Link>
+          );
         })}
       </Flex>
 
@@ -127,42 +124,42 @@ const ArtistTemplate = ({ data }: PropType) => {
 };
 
 export const data: any = graphql`
-query GetProfile($id: ID) {
-  artist: graphCmsProfile(remoteId: {eq: $id}) {
-    remoteId
-    name
-    description {
-      markdownNode {
-        childMdx {
-          body
+  query GetProfile($id: ID) {
+    artist: graphCmsProfile(remoteId: { eq: $id }) {
+      remoteId
+      name
+      description {
+        markdownNode {
+          childMdx {
+            body
+          }
+        }
+      }
+      profileType
+      installations {
+        remoteId
+        title
+        images {
+          gatsbyImageData(width: 200, placeholder: BLURRED, quality: 20)
+          altText
+        }
+      }
+      performances {
+        remoteId
+        images {
+          gatsbyImageData(width: 200, placeholder: BLURRED, quality: 20)
+          altText
+        }
+      }
+      socialLink {
+        ... on GraphCMS_Link {
+          id
+          url
+          label
         }
       }
     }
-    profileType
-    installations {
-      remoteId
-      title
-      images {
-        gatsbyImageData(width: 200, placeholder: BLURRED, quality: 20)
-        altText
-      }
-    }
-    performances {
-      remoteId
-      images {
-        gatsbyImageData(width: 200, placeholder: BLURRED, quality: 20)
-        altText
-      }
-    }
-    socialLink {
-      ... on GraphCMS_Link {
-        id
-        url
-        label
-      }
-    }
   }
-}
 `;
 
 ArtistTemplate.propTypes = {

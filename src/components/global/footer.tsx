@@ -1,7 +1,6 @@
 import React, { ReactNode, useState } from 'react';
 import ReactAudioPlayer from 'react-audio-player';
 import AudioPlayer from 'react-h5-audio-player';
-import 'react-h5-audio-player/lib/styles.css';
 import {
   Box,
   Center,
@@ -30,30 +29,35 @@ const ListHeader = ({ children }: { children: ReactNode }) => {
 };
 
 const Footer = () => {
+  const [urls, setUrls] = useState([
+    {
+      url:
+        'https://docs.google.com/uc?export=open&id=1E7pDYufD0Mfxh_k5Nm7DhtIN_KpTDdVL',
+      title: 'Aquaribliz - Endurance Orchestral Club'
+    },
+    {
+      url:
+        'https://docs.google.com/uc?export=open&id=1sjdRbyb_ZEMQ5CO6gT7DV3kotyc71Ol_',
+      title: 'Meera - Endurance Flute Quintet'
+    },
+    {
+      url:
+        'https://docs.google.com/uc?export=open&id=1zpsTpMFZb81WT7FAIZc7gEiSuW752Kva',
+      title: 'Kelcie - Emotions'
+    },
+    {
+      url:
+        'https://docs.google.com/uc?export=open&id=1mAQjp5gw2kSUjyEvPVJ-ibYmHp8DWGI1',
+      title: 'Michael - Endurance Medley'
+    },
+    {
+      url:
+        'https://docs.google.com/uc?export=open&id=1OtD_SSycLd5OdE5j1M31Md2J1gza3ujx',
+      title: 'Ryan Bucao'
+    }
+  ]);
 
-  const [urls, setUrls] = useState([{
-    "url": "https://docs.google.com/uc?export=open&id=1E7pDYufD0Mfxh_k5Nm7DhtIN_KpTDdVL",
-    "title": "Aquaribliz - Endurance Orchestral Club"
-  },
-  {
-    "url": "https://docs.google.com/uc?export=open&id=1sjdRbyb_ZEMQ5CO6gT7DV3kotyc71Ol_",
-    "title": "Meera - Endurance Flute Quintet"
-  },
-  {
-    "url": "https://docs.google.com/uc?export=open&id=1zpsTpMFZb81WT7FAIZc7gEiSuW752Kva",
-    "title": "Kelcie - Emotions"
-  },
-  {
-    "url": "https://docs.google.com/uc?export=open&id=1mAQjp5gw2kSUjyEvPVJ-ibYmHp8DWGI1",
-    "title": "Michael - Endurance Medley"
-  },
-  {
-    "url": "https://docs.google.com/uc?export=open&id=1OtD_SSycLd5OdE5j1M31Md2J1gza3ujx",
-    "title": "Ryan Bucao"
-  }])
-
-  const [index, setIndex] = useState(Math.ceil(Math.random() * 4))
-  console.log(index)
+  const [index, setIndex] = useState(Math.ceil(Math.random() * 4));
   return (
     <Box
       bg={useColorModeValue('gray.50', 'gray.900')}
@@ -68,8 +72,14 @@ const Footer = () => {
             src={urls[index].url}
             showSkipControls={true}
             volume={0.2}
-            onClickPrevious={(e) => { e.preventDefault(); setIndex((index - 1) % urls.length); console.log(index) }}
-            onClickNext={(e) => { e.preventDefault(); setIndex((index + 1) % urls.length); console.log(index) }}
+            onClickPrevious={(e) => {
+              e.preventDefault();
+              setIndex((index - 1) % urls.length);
+            }}
+            onClickNext={(e) => {
+              e.preventDefault();
+              setIndex((index + 1) % urls.length);
+            }}
           ></AudioPlayer>
         </Center>
         <SimpleGrid
@@ -112,7 +122,6 @@ const Footer = () => {
             ))}
           </Stack>
         </SimpleGrid>
-
       </Container>
     </Box>
   );
