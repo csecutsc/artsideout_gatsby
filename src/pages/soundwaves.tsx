@@ -62,6 +62,26 @@ const MarketPage = () => {
       "desc": "“I wanted to capture the process of endurance from start to end with this composition. To me, the concept of endurance is starting a goal that seems vague at first. As a result, I started off with some gloomy, dreamy mallet style elements to illustrate the vagueness. When the blaring horns and drum kit mix start kicking in, we reach the stage where we totally commit ourselves to a goal without any more hesitation. The twist in the middle section illustrates how endurance can shed light to a different perspective towards your goal as long as you don’t give up. And the piece ends with a solid orchestral harmony to indicate the fruits of perseverance.”",
       "links": [
       ]
+    },
+    {
+      "name": "Grant Caven",
+      "image": "https://media.graphcms.com/GxBeligRQuh9xgTLqzlv",
+      "bio": "Grant Craven (November 23, 1995), known professionally as Rowin Roberts or under the moniker “November”, is a Canadian film and game composer, pianist, and guitarist. He is fascinated by music theory and the neuropsychology of music, spending the time he isn’t composing by reading textbooks and academic research articles. This, naturally, excludes him from many social events.",
+      "desc": "Although it may get hard, there is always someone who has your back. You never need to push yourself farther for them. They would much rather you to push yourself for you.",
+      "links": [
+        {
+          "type": "Email",
+          "url": "November.southport@gmail.com"
+        },
+        {
+          "type": "Instagram",
+          "url": "https://www.instagram.com/november.composer/"
+        },
+        {
+          "type": "SoundCloud",
+          "url": " https://soundcloud.com/user-953074216"
+        },
+      ]
     }
   ]
 
