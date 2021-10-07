@@ -85,6 +85,27 @@ const Workshops = () => {
     <Layout>
       <Seo title="Workshops" />
       <Stack spacing={2}>
+        <Heading
+          as={Text}
+          size="xl"
+          fontWeight="bold"
+          color="#E81D77"
+          textAlign={['center', 'center', 'left', 'left']}
+        >
+          Workshops
+        </Heading>
+        <Heading
+          as="h2"
+          size="md"
+          color="primary.800"
+          opacity="0.8"
+          fontWeight="normal"
+          lineHeight={1.5}
+          marginBottom="30px"
+          textAlign={['center', 'center', 'left', 'left']}
+        >
+          A series of art workshops taking place all day from 11 AM - 10 PM!
+        </Heading>
         {currentWorkshops.length > 0 && (
           <div>
             <Heading

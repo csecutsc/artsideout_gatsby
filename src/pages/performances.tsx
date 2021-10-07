@@ -90,6 +90,19 @@ const PerformancesPage = () => {
         >
           Performances
         </Heading>
+        <Heading
+          as="h2"
+          size="md"
+          color="primary.800"
+          opacity="0.8"
+          fontWeight="normal"
+          lineHeight={1.5}
+          marginBottom="30px"
+          textAlign={['center', 'center', 'left', 'left']}
+        >
+          Performance pieces created by our spectacular performers for
+          ARTSIDEOUT 2021.
+        </Heading>
         <SimpleGrid columns={[1, 1, 3]} spacing={4}>
           {data.activities.nodes.map((event: any, i: number) => {
             return (

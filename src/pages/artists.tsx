@@ -53,8 +53,8 @@ const ArtistsPage = () => {
         lineHeight={1.5}
         textAlign={['center', 'center', 'left', 'left']}
       >
-        In thinking of “Endurance”, artists create a diverse body of works.
-        Click on an installation to learn more!
+        Thank you so much to all of our artists who contributed to today's
+        festival. ARTSIDEOUT wouldn't have been possible without you.
       </Heading>
 
       <SimpleGrid columns={[2, null, 3]}>
@@ -62,9 +62,9 @@ const ArtistsPage = () => {
           <Link
             as={GatsbyLink}
             to={`/artist/${CreateFriendlyUrl(data.name, data.remoteId)}`}
-            color={"#E81D77"}
+            color={'#E81D77'}
           >
-            <Text fontWeight={'400'} color={"#E81D77"} fontSize={'lg'} mb={2}>
+            <Text fontWeight={'400'} color={'#E81D77'} fontSize={'lg'} mb={2}>
               {data.name}
             </Text>
           </Link>

@@ -15,7 +15,8 @@ module.exports = {
       options: {
         trackingId: 'UA-209680097-1',
         // this option places the tracking script into the head of the DOM
-        head: true
+        head: false,
+        defer: false
         // other options
       }
     },

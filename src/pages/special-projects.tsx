@@ -107,7 +107,7 @@ const SpecialProjects = () => {
         color="#E81D77"
         textAlign={['center', 'center', 'left', 'left']}
       >
-        Special Projects
+        Special Projects - Installations
       </Heading>
 
       <Heading
@@ -119,7 +119,7 @@ const SpecialProjects = () => {
         lineHeight={1.5}
         textAlign={['center', 'center', 'left', 'left']}
       >
-        Projects currated by the ARTSIDEOUT team.
+        Special installations curated and commissioned by the ARTSIDEOUT team.
       </Heading>
       <Divider />
       {/* <Heading
@@ -196,7 +196,7 @@ const SpecialProjects = () => {
         color="#E81D77"
         textAlign={['center', 'center', 'left', 'left']}
       >
-        Special Projects
+        Special Projects - Performances
       </Heading>
 
       <Heading
@@ -209,7 +209,8 @@ const SpecialProjects = () => {
         marginBottom="30px"
         textAlign={['center', 'center', 'left', 'left']}
       >
-        Projects curated and commissioned by the ARTSIDEOUT team.
+        Special performances curated and commissioned by the ARTSIDEOUT team.
+        Click on one to watch!
       </Heading>
 
       <SimpleGrid columns={[1, 1, 3]} spacing={4}>

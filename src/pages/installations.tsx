@@ -106,6 +106,19 @@ const InstallationPage = () => {
         Studio
       </Heading>
 
+      <Heading
+        as="h2"
+        size="md"
+        color="primary.800"
+        opacity="0.8"
+        fontWeight="normal"
+        lineHeight={1.5}
+        marginBottom="30px"
+        textAlign={['center', 'center', 'left', 'left']}
+      >
+        Studio art pieces created by our fantastic artists for ARTSIDEOUT 2021.
+      </Heading>
+
       {/* <Heading
         as="h2"
         size="md"

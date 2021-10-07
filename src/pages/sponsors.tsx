@@ -20,24 +20,38 @@ import { graphql, useStaticQuery } from 'gatsby';
 
 const SponsorsPage = () => {
   const data: any = useStaticQuery(graphql`
-  query MyQuery {
-    allGraphCmsSponsor {
-      nodes {
-        name
-        isPartner
-        logo {
-          url
+    query MyQuery {
+      allGraphCmsSponsor {
+        nodes {
+          name
+          isPartner
+          logo {
+            url
+          }
         }
       }
     }
-  }
   `);
 
-  const sponsored = data.allGraphCmsSponsor.nodes.filter((node: { isPartner: Boolean; }) => !node.isPartner)
-  const partners = data.allGraphCmsSponsor.nodes.filter((node: { isPartner: Boolean; }) => node.isPartner)
+  const sponsored = data.allGraphCmsSponsor.nodes.filter(
+    (node: { isPartner: Boolean }) => !node.isPartner
+  );
+  const partners = data.allGraphCmsSponsor.nodes.filter(
+    (node: { isPartner: Boolean }) => node.isPartner
+  );
 
   return (
     <Layout>
+      <Heading
+        as={Text}
+        size="lg"
+        fontWeight="bold"
+        color="#E81D77"
+        textAlign={['center', 'center', 'left', 'left']}
+      >
+        Thank you to all of our Sponsors and Partners who helped ARTSIDEOUT 2021
+        be what it is today.
+      </Heading>
       <Heading
         as={Text}
         size="xl"
@@ -47,21 +61,46 @@ const SponsorsPage = () => {
       >
         Sponsors
       </Heading>
-      <div style={{ flexWrap: "wrap", display: "flex", flexDirection: "row", justifyContent: "flex-start" }}>
-        {sponsored.map((sponsor: { logo: { url: string }; name: string; }) => {
+      <div
+        style={{
+          flexWrap: 'wrap',
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'flex-start'
+        }}
+      >
+        {sponsored.map((sponsor: { logo: { url: string }; name: string }) => {
           return (
-            <Box padding="10px" width="200px" height="250px" margin="20px" rounded="lg" shadow="md" maxW="2xl">
-              <div style={{ flexWrap: "wrap", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+            <Box
+              padding="10px"
+              width="200px"
+              height="250px"
+              margin="20px"
+              rounded="lg"
+              shadow="md"
+              maxW="2xl"
+            >
+              <div
+                style={{
+                  flexWrap: 'wrap',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                  alignItems: 'center'
+                }}
+              >
                 <img src={sponsor.logo.url} />
                 <Heading
                   as={Text}
                   size="sm"
                   color="#E81D77"
                   textAlign={['center', 'center', 'left', 'left']}
-                >{sponsor.name}</Heading>
+                >
+                  {sponsor.name}
+                </Heading>
               </div>
             </Box>
-          )
+          );
         })}
       </div>
       <Heading
@@ -73,11 +112,30 @@ const SponsorsPage = () => {
       >
         Partners
       </Heading>
-      <div style={{ flexWrap: "wrap", display: "flex", flexDirection: "row", justifyContent: "flex-start" }}>
-        {partners.map((sponsor: { logo: { url: string }; name: string; }) => {
+      <div
+        style={{
+          flexWrap: 'wrap',
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'flex-start'
+        }}
+      >
+        {partners.map((sponsor: { logo: { url: string }; name: string }) => {
           return (
-            <Box padding="10px" width="200px" margin="20px" rounded="lg" shadow="md" maxW="2xl">
-              <Flex flexWrap="wrap" justifyContent="start" alignItems="center" direction="column">
+            <Box
+              padding="10px"
+              width="200px"
+              margin="20px"
+              rounded="lg"
+              shadow="md"
+              maxW="2xl"
+            >
+              <Flex
+                flexWrap="wrap"
+                justifyContent="start"
+                alignItems="center"
+                direction="column"
+              >
                 <img src={sponsor.logo.url} />
                 <Heading
                   as={Text}
@@ -85,10 +143,12 @@ const SponsorsPage = () => {
                   size="sm"
                   color="#E81D77"
                   textAlign={['center', 'center', 'left', 'left']}
-                >{sponsor.name}</Heading>
+                >
+                  {sponsor.name}
+                </Heading>
               </Flex>
             </Box>
-          )
+          );
         })}
       </div>
     </Layout>
@@ -96,4 +156,3 @@ const SponsorsPage = () => {
 };
 
 export default SponsorsPage;
-
