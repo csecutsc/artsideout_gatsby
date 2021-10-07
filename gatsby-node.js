@@ -11,16 +11,14 @@ const slugify = require(`slugify`);
 var { CreateFriendlyUrl } = require('./src/helpers');
 
 exports.createPages = async ({ graphql, actions }) => {
-
   var fs = require('fs');
-  var dir = "/opt/build/repo/.cache/caches/gatsby-source-graphcms/"
+  var dir = '/opt/build/repo/.cache/caches/gatsby-source-graphcms/';
 
   exports.onPreBootstrap = () => {
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir);
     }
-  }
-
+  };
 
   const result = await graphql(`
     query CreatePages {
@@ -33,6 +31,22 @@ exports.createPages = async ({ graphql, actions }) => {
       artist: allGraphCmsProfile {
         nodes {
           name
+          remoteId
+        }
+      }
+      workshop: allGraphCmsActivity(
+        filter: { performanceType: { eq: WORKSHOPS } }
+      ) {
+        nodes {
+          title
+          remoteId
+        }
+      }
+      performance: allGraphCmsActivity(
+        filter: { performanceType: { ne: WORKSHOPS } }
+      ) {
+        nodes {
+          title
           remoteId
         }
       }
@@ -49,6 +63,20 @@ exports.createPages = async ({ graphql, actions }) => {
     actions.createPage({
       path: `/artist/${CreateFriendlyUrl(name, remoteId)}`,
       component: path.resolve('./src/templates/artistTemplate.tsx'),
+      context: { id: remoteId }
+    });
+  });
+  result.data.workshop.nodes.forEach(({ remoteId }) => {
+    actions.createPage({
+      path: `/workshop/${CreateFriendlyUrl('', remoteId)}`,
+      component: path.resolve('./src/templates/workshopTemplate.tsx'),
+      context: { id: remoteId }
+    });
+  });
+  result.data.performance.nodes.forEach(({ remoteId }) => {
+    actions.createPage({
+      path: `/performance/${CreateFriendlyUrl('', remoteId)}`,
+      component: path.resolve('./src/templates/performanceTemplate.tsx'),
       context: { id: remoteId }
     });
   });
