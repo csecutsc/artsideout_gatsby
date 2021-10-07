@@ -97,7 +97,11 @@ const ArtistTemplate = ({ data }: PropType) => {
                   key={i}
                   objectFit="cover"
                   image={
-                    data.images.length > 0 ? data.images[0].gatsbyImageData : ''
+                    data.images.length > 0 &&
+                    data.images[0] &&
+                    data.images[0].localFile.childImageSharp
+                      ? data.images[0].localFile.childImageSharp.gatsbyImageData
+                      : ''
                   }
                   alt={data.images.length > 0 ? data.images[0].altText : ''}
                 />
@@ -131,8 +135,11 @@ const ArtistTemplate = ({ data }: PropType) => {
                       key={i}
                       objectFit="cover"
                       image={
-                        data.images.length > 0
-                          ? data.images[0].gatsbyImageData
+                        data.images.length > 0 &&
+                        data.images[0] &&
+                        data.images[0].localFile.childImageSharp
+                          ? data.images[0].localFile.childImageSharp
+                              .gatsbyImageData
                           : ''
                       }
                       alt={data.images.length > 0 ? data.images[0].altText : ''}
@@ -149,9 +156,11 @@ const ArtistTemplate = ({ data }: PropType) => {
                       key={i}
                       objectFit="cover"
                       image={
-                        data.images.length > 0 && data.images[0] && data.images[0].localFile.childImageSharp
+                        data.images.length > 0 &&
+                        data.images[0] &&
+                        data.images[0].localFile.childImageSharp
                           ? data.images[0].localFile.childImageSharp
-                            .gatsbyImageData
+                              .gatsbyImageData
                           : ''
                       }
                       alt={data.images.length > 0 ? data.images[0].altText : ''}
@@ -184,10 +193,9 @@ export const data: any = graphql`
         remoteId
         title
         images {
-          gatsbyImageData(width: 200, placeholder: BLURRED, quality: 20)
           localFile {
             childImageSharp {
-              gatsbyImageData(width: 500)
+              gatsbyImageData(width: 500, placeholder: BLURRED, quality: 50)
             }
           }
           altText
@@ -197,10 +205,9 @@ export const data: any = graphql`
         remoteId
         performanceType
         images {
-          gatsbyImageData(width: 200, placeholder: BLURRED, quality: 20)
           localFile {
             childImageSharp {
-              gatsbyImageData(width: 500)
+              gatsbyImageData(width: 500, placeholder: BLURRED, quality: 50)
             }
           }
           altText
@@ -210,10 +217,9 @@ export const data: any = graphql`
         remoteId
         projectType
         displayImage {
-          gatsbyImageData(width: 200, placeholder: BLURRED, quality: 20)
           localFile {
             childImageSharp {
-              gatsbyImageData(width: 500)
+              gatsbyImageData(width: 500, placeholder: BLURRED, quality: 50)
             }
           }
           altText
