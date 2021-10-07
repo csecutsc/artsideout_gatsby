@@ -128,6 +128,16 @@ const Workshops = () => {
                     }
                   />
                 </Box>
+                <Box>
+                  {event.zoomMeeting && (
+                    <chakra.span
+                      fontSize="md"
+                      color={useColorModeValue('gray.600', 'gray.300')}
+                    >
+                      {event.zoomMeeting.meetingPass}
+                    </chakra.span>
+                  )}
+                </Box>
 
                 <Box mt={4}>
                   <Flex dir="row" alignItems="center" justify="space-between">

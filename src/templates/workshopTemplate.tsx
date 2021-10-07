@@ -66,15 +66,18 @@ const WorkshopTemplate = ({ data }: PropType) => {
         size="md"
         textAlign={['center', 'center', 'left', 'left']}
       >
-        <Link
-          target="_blank"
-          href={`/artist/${CreateFriendlyUrl(
-            data.workshop.profiles[0].name,
-            data.workshop.profiles[0].remoteId
-          )}`}
-        >
-          {data.workshop.profiles[0].name}
-        </Link>
+        {data.workshop.profiles.length > 0 && (
+          <Link
+            target="_blank"
+            href={`/artist/${CreateFriendlyUrl(
+              data.workshop.profiles[0].name,
+              data.workshop.profiles[0].remoteId
+            )}`}
+            fontWeight="bold"
+          >
+            {data.workshop.profiles[0].name}
+          </Link>
+        )}
       </Heading>
 
       <Grid templateColumns="repeat(4, 1fr)" gap={4}>

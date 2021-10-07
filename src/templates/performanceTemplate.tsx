@@ -40,7 +40,7 @@ import { CreateFriendlyUrl } from '../helpers';
 
 interface PropType {
   data: {
-    performance: ActivityData;
+    performance: any;
   };
 }
 
@@ -68,15 +68,18 @@ const PerformanceTemplate = ({ data }: PropType) => {
         fontWeight="bold"
         textAlign={['center', 'center', 'left', 'left']}
       >
-        <Link
-          target="_blank"
-          href={`/artist/${CreateFriendlyUrl(
-            data.performance.profiles[0].name,
-            data.performance.profiles[0].remoteId
-          )}`}
-        >
-          {data.performance.profiles[0].name}
-        </Link>
+        {data.performance.profiles.length > 0 && (
+          <Link
+            target="_blank"
+            href={`/artist/${CreateFriendlyUrl(
+              data.performance.profiles[0].name,
+              data.performance.profiles[0].remoteId
+            )}`}
+            fontWeight="bold"
+          >
+            {data.performance.profiles[0].name}
+          </Link>
+        )}
       </Heading>
 
       <Grid templateColumns="repeat(4, 1fr)" gap={4}>

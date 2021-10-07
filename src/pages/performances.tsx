@@ -109,16 +109,18 @@ const PerformancesPage = () => {
                     <Button>
                       <Link href={event.videoUrl}>View Recording</Link>
                     </Button>
-                    <Link
-                      target="_blank"
-                      href={`/artist/${CreateFriendlyUrl(
-                        event.profiles[0].name,
-                        event.profiles[0].remoteId
-                      )}`}
-                      fontWeight="bold"
-                    >
-                      {event.profiles[0].name}
-                    </Link>
+                    {event.profiles.length > 0 && (
+                      <Link
+                        target="_blank"
+                        href={`/artist/${CreateFriendlyUrl(
+                          event.profiles[0].name,
+                          event.profiles[0].remoteId
+                        )}`}
+                        fontWeight="bold"
+                      >
+                        {event.profiles[0].name}
+                      </Link>
+                    )}
                   </Flex>
                 </Box>
               </Box>
