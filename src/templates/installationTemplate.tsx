@@ -122,6 +122,11 @@ export const data: any = graphql`
       title
       images {
         gatsbyImageData(width: 300, placeholder: BLURRED, quality: 70)
+        localFile {
+          childImageSharp {
+            gatsbyImageData(width: 500)
+          }
+        }
         altText
         url
       }

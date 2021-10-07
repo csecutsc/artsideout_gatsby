@@ -149,8 +149,9 @@ const ArtistTemplate = ({ data }: PropType) => {
                       key={i}
                       objectFit="cover"
                       image={
-                        data.images.length > 0
-                          ? data.images[0].gatsbyImageData
+                        data.images.length > 0 && data.images[0] && data.images[0].localFile.childImageSharp
+                          ? data.images[0].localFile.childImageSharp
+                            .gatsbyImageData
                           : ''
                       }
                       alt={data.images.length > 0 ? data.images[0].altText : ''}
@@ -184,6 +185,11 @@ export const data: any = graphql`
         title
         images {
           gatsbyImageData(width: 200, placeholder: BLURRED, quality: 20)
+          localFile {
+            childImageSharp {
+              gatsbyImageData(width: 500)
+            }
+          }
           altText
         }
       }
@@ -192,6 +198,11 @@ export const data: any = graphql`
         performanceType
         images {
           gatsbyImageData(width: 200, placeholder: BLURRED, quality: 20)
+          localFile {
+            childImageSharp {
+              gatsbyImageData(width: 500)
+            }
+          }
           altText
         }
       }
@@ -200,6 +211,11 @@ export const data: any = graphql`
         projectType
         displayImage {
           gatsbyImageData(width: 200, placeholder: BLURRED, quality: 20)
+          localFile {
+            childImageSharp {
+              gatsbyImageData(width: 500)
+            }
+          }
           altText
         }
       }

@@ -5,6 +5,7 @@ import {
   Box,
   Center,
   Container,
+  Flex,
   Link,
   SimpleGrid,
   Stack,
@@ -69,8 +70,8 @@ const Footer = () => {
       color={useColorModeValue('gray.700', 'gray.200')}
     >
       <Container as={Stack} maxW={'7xl'} py={10}>
-        <Center paddingBottom="20px">
-          <Text color="#E81D77" fontWeight={'700'} fontSize={'lg'} mb={2}>
+        <Container as={Stack} paddingBottom="20px">
+          <Text textAlign="center" color="#E81D77" fontWeight={'700'} fontSize={'lg'} mb={2}>
             {urls[index].title}
           </Text>
           <AudioPlayer
@@ -86,7 +87,7 @@ const Footer = () => {
               setIndex((index + 1) % urls.length);
             }}
           ></AudioPlayer>
-        </Center>
+        </Container>
         <SimpleGrid
           templateColumns={{ sm: '1fr 1fr', md: '2fr 1fr 1fr 1fr 1fr' }}
           spacing={8}

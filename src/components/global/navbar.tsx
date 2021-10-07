@@ -26,6 +26,7 @@ const NavbarButton = (name: string, route: string, key: number) => (
       variant="ghost"
       rounded={'full'}
       size="sm"
+
       color={useColorModeValue('gray.700', 'gray.200')}
       _hover={{
         color: 'white',
@@ -41,6 +42,15 @@ const ChangeColorModeButton = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   return (
     <Button rounded={'full'} size="sm" onClick={toggleColorMode}>
+      {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+    </Button>
+  );
+};
+
+const ChangeColorModeButtonMobile = (isOpen: any) => {
+  const { colorMode, toggleColorMode } = useColorMode();
+  return (
+    <Button display={{ lg: isOpen ? 'none' : 'inherit' }} rounded={'full'} size="sm" onClick={toggleColorMode}>
       {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
     </Button>
   );
@@ -72,17 +82,18 @@ const Navbar = () => {
               />
             </Link>
           </Flex>
+          <ChangeColorModeButtonMobile isOpen={isOpen} />
           <IconButton
             size={'md'}
             icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
             aria-label={'Open Menu'}
-            display={{ md: !isOpen ? 'none' : 'inherit' }}
+            display={{ lg: !isOpen ? 'none' : 'inherit' }}
             onClick={isOpen ? onClose : onOpen}
           />
 
           <Box
-            display={{ base: isOpen ? 'block' : 'none', md: 'block' }}
-            flexBasis={{ base: '100%', md: 'auto' }}
+            display={{ base: isOpen ? 'block' : 'none', md: isOpen ? 'block' : 'none', lg: 'block' }}
+            flexBasis={{ base: '100%', md: '100%', lg: 'auto' }}
           >
             <Flex
               align={['center', 'center', 'center', 'center']}
@@ -93,13 +104,14 @@ const Navbar = () => {
               <HStack
                 as={'nav'}
                 spacing={4}
-                display={{ base: 'none', md: 'flex' }}
+                display={{ base: 'none', md: 'none', lg: 'flex' }}
               >
                 {NavLinks.map(({ name, route }, i) =>
                   NavbarButton(name, route, i)
                 )}
                 <ChangeColorModeButton />
               </HStack>
+
             </Flex>
             {/* Mobile */}
             {isOpen ? (

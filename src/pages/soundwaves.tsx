@@ -137,7 +137,7 @@ const MarketPage = () => {
       <SimpleGrid columns={[1, 1, 2]} spacing={4}>
         {test.map((artist) => {
           return (
-            <Box padding="10px" width="600px" mx="auto" rounded="lg" shadow="md" maxW="2xl">
+            <Box padding="10px" width="auto" mx="auto" rounded="lg" shadow="md" maxW="2xl">
               <Flex justifyContent="center" alignItems="center" direction="column">
                 <Avatar size="lg" marginBottom="15px" src={artist.image} />
                 <Heading

@@ -88,9 +88,9 @@ const WorkshopTemplate = ({ data }: PropType) => {
               <GatsbyImage
                 image={
                   data.workshop.images[0] &&
-                  data.workshop.images[0].localFile.childImageSharp
+                    data.workshop.images[0].localFile.childImageSharp
                     ? data.workshop.images[0].localFile.childImageSharp
-                        .gatsbyImageData
+                      .gatsbyImageData
                     : ''
                 }
                 alt={
@@ -105,6 +105,39 @@ const WorkshopTemplate = ({ data }: PropType) => {
         <GridItem colSpan={2}>
           <Box>
             <Stack direction="column">
+              <Heading
+                as={Text}
+                size="md"
+                fontWeight="bold"
+                color="#E81D77"
+                textAlign={['center', 'center', 'left', 'left']}
+              >
+                Meeting Details
+              </Heading>
+              {data.workshop.zoomMeeting.meetingUrl ?
+                <Heading
+                  as={Text}
+                  size="sm"
+                  textAlign={['center', 'center', 'left', 'left']}
+                >
+                  Meeting URL: <Link href={data.workshop.zoomMeeting.meetingUrl}>{data.workshop.zoomMeeting.meetingUrl}</Link>
+                </Heading> : null}
+              {data.workshop.zoomMeeting.meetingId ?
+                <Heading
+                  as={Text}
+                  size="sm"
+                  textAlign={['center', 'center', 'left', 'left']}
+                >
+                  Meeting ID: {data.workshop.zoomMeeting.meetingId}
+                </Heading> : null}
+              {data.workshop.zoomMeeting.meetingPass ?
+                <Heading
+                  as={Text}
+                  size="sm"
+                  textAlign={['center', 'center', 'left', 'left']}
+                >
+                  Meeting Password: {data.workshop.zoomMeeting.meetingPass}
+                </Heading> : null}
               <Divider orientation="vertical" />
               <MDXRenderer>
                 {data.workshop.description.markdownNode.childMdx.body}
@@ -144,6 +177,11 @@ export const data: any = graphql`
       profiles {
         name
         remoteId
+      }
+      zoomMeeting {
+        meetingPass
+        meetingUrl
+        meetingId
       }
     }
   }

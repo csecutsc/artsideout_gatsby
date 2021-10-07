@@ -89,7 +89,14 @@ const PerformanceTemplate = ({ data }: PropType) => {
             <AspectRatio ratio={16 / 9}>
               <iframe src={data.performance.videoUrl} />
             </AspectRatio>
+
           </Stack>
+          <Heading
+            as={Text}
+            size="sm"
+            fontWeight="normal"
+            textAlign={['center', 'center', 'center', 'center']}
+          >Click the top right of the video if it doesn't load</Heading>
         </Box>
         <Box>
           <Stack direction="column" p={4}>
@@ -111,6 +118,11 @@ export const data: any = graphql`
       title
       images {
         gatsbyImageData(width: 300, placeholder: BLURRED, quality: 70)
+        localFile {
+          childImageSharp {
+            gatsbyImageData(width: 500)
+          }
+        }
         altText
         url
       }

@@ -176,7 +176,7 @@ const IndexPage = () => {
           textAlign={['center', 'center', 'left', 'left']}
           marginBottom="10px"
         >
-          About Enudrance
+          About Endurance
         </Heading>
         {aboutEndurance.map((item) => {
           return (
