@@ -82,28 +82,24 @@ const PerformanceTemplate = ({ data }: PropType) => {
         )}
       </Heading>
 
-      <Grid templateColumns="repeat(4, 1fr)" gap={4}>
-        <GridItem colSpan={3}>
-          <Box>
-            <Stack direction="column" p={4}>
-              <Divider orientation="vertical" />
-              <AspectRatio ratio={16 / 9}>
-                <iframe src={data.performance.videoUrl} />
-              </AspectRatio>
-            </Stack>
-          </Box>
-        </GridItem>
-        <GridItem colSpan={1}>
-          <Box>
-            <Stack direction="column" p={4}>
-              <Divider orientation="vertical" />
-              <MDXRenderer>
-                {data.performance.description.markdownNode.childMdx.body}
-              </MDXRenderer>
-            </Stack>
-          </Box>
-        </GridItem>
-      </Grid>
+      <SimpleGrid columns={[1, 2, 2]}>
+        <Box>
+          <Stack direction="column" p={4}>
+            <Divider orientation="vertical" />
+            <AspectRatio ratio={16 / 9}>
+              <iframe src={data.performance.videoUrl} />
+            </AspectRatio>
+          </Stack>
+        </Box>
+        <Box>
+          <Stack direction="column" p={4}>
+            <Divider orientation="vertical" />
+            <MDXRenderer>
+              {data.performance.description.markdownNode.childMdx.body}
+            </MDXRenderer>
+          </Stack>
+        </Box>
+      </SimpleGrid>
     </Layout>
   );
 };

@@ -29,6 +29,14 @@ const SpecialProjects = () => {
         nodes {
           title
           remoteId
+          displayImage {
+            gatsbyImageData(width: 500, height: 500)
+            localFile {
+              childImageSharp {
+                gatsbyImageData(width: 500)
+              }
+            }
+          }
           elements {
             ... on GraphCMS_Installation {
               id
@@ -48,6 +56,7 @@ const SpecialProjects = () => {
             }
             ... on GraphCMS_Activity {
               id
+              remoteId
               title
               startTime
               videoUrl
@@ -203,68 +212,80 @@ const SpecialProjects = () => {
         Projects curated and commissioned by the ARTSIDEOUT team.
       </Heading>
 
-      <Flex
-        flexWrap={'wrap'}
-        flexDirection="row"
-        justifyContent="flex-start"
-        alignContent="flex-start"
-      >
-        {performance.map(
-          (event: {
-            elements: { videoUrl: string }[];
-            startTime: Date;
-            endTime: Date;
-            title: string;
-            zoomMeeting: { meetingUrl: string };
-            profiles: { name: string; remoteId: any }[];
-          }) => {
-            return (
-              <Box width="350px" mx="auto" rounded="lg" shadow="md" maxW="2xl">
-                <Box p={2}>
-                  <Box>
-                    <chakra.span
-                      fontSize="sm"
-                      color={useColorModeValue('gray.600', 'gray.300')}
-                    >
-                      {new Date(event.startTime).toDateString()}
-                    </chakra.span>
-                    <Link
-                      display="block"
-                      // color={useColorModeValue('gray.800', 'white')}
-                      fontWeight="bold"
-                      fontSize="2xl"
-                      mt={2}
-                      _hover={{ color: 'gray.600', textDecor: 'underline' }}
-                    >
-                      {event.title}
-                    </Link>
-                  </Box>
-
-                  <Box mt={4}>
-                    <Flex dir="row" alignItems="center" justify="space-between">
-                      <Button>
-                        <Link target="_blank" href={event.elements[0].videoUrl}>
-                          View Recording
-                        </Link>
-                      </Button>
-                      <Link
-                        target="_blank"
-                        href={`/artist/${CreateFriendlyUrl(
-                          event.profiles[0].name,
-                          event.profiles[0].remoteId
-                        )}`}
+      <SimpleGrid columns={[1, 1, 3]} spacing={4}>
+        {performance.map((event: any, i: number) => {
+          return (
+            <div>
+              <Link
+                // color={useColorModeValue('gray.800', 'white')}
+                display="block"
+                href={`/performance/${CreateFriendlyUrl(
+                  '',
+                  event.elements[0].remoteId
+                )}`}
+                style={{ textDecoration: 'none' }}
+                _hover={{
+                  textDecoration: 'none',
+                  bg: useColorModeValue('pink.100', 'pink.300')
+                }}
+              >
+                <Box
+                  height="auto"
+                  width="auto"
+                  mx="auto"
+                  rounded="lg"
+                  shadow="md"
+                  maxW="2xl"
+                  key={i}
+                >
+                  <Box p={6}>
+                    <Box>
+                      <Heading
+                        as="h3"
+                        size="md"
+                        color="#E81D77"
                         fontWeight="bold"
+                        lineHeight={1.5}
+                        textAlign={['center', 'center', 'left', 'left']}
                       >
-                        {event.profiles[0].name}
-                      </Link>
-                    </Flex>
+                        {event.title}
+                      </Heading>
+                      {event.profiles.length > 0 && (
+                        <Link
+                          target="_blank"
+                          href={`/artist/${CreateFriendlyUrl(
+                            event.profiles[0].name,
+                            event.profiles[0].remoteId
+                          )}`}
+                          fontWeight="bold"
+                          size="md"
+                        >
+                          {event.profiles[0].name}
+                        </Link>
+                      )}
+                      <GatsbyImage
+                        objectFit="cover"
+                        image={
+                          event.displayImage &&
+                          event.displayImage.localFile.childImageSharp
+                            ? event.displayImage.localFile.childImageSharp
+                                .gatsbyImageData
+                            : ''
+                        }
+                        alt={
+                          event.displayImage
+                            ? event.displayImage.altText
+                            : event.title
+                        }
+                      />
+                    </Box>
                   </Box>
                 </Box>
-              </Box>
-            );
-          }
-        )}
-      </Flex>
+              </Link>
+            </div>
+          );
+        })}
+      </SimpleGrid>
     </Layout>
   );
 };

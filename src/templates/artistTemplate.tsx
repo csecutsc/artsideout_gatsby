@@ -11,7 +11,7 @@ import { ProfileData } from '../types/PrimaryTypes';
 
 interface PropType {
   data: {
-    artist: ProfileData;
+    artist: any;
   };
 }
 
@@ -71,7 +71,7 @@ const ArtistTemplate = ({ data }: PropType) => {
         })}
       </Flex>
 
-      {/* {data.artist.installations ? (
+      {data.artist.installations ? (
         <div>
           <Heading
             as={Text}
@@ -96,29 +96,7 @@ const ArtistTemplate = ({ data }: PropType) => {
             )}
           </SimpleGrid>
         </div>
-      ) : null} */}
-
-      {/* <SimpleGrid columns={[2, null, 3]} autoFlow="row dense">
-        {data.artist.performances.images.map((image: any, i: number) => (
-          <GatsbyImage
-            key={i}
-            objectFit="cover"
-            image={image ? image.gatsbyImageData : ''}
-            alt={image ? image.altText : ''}
-          />
-        ))}
-      </SimpleGrid> */}
-
-      {/* <SimpleGrid columns={[2, null, 3]} autoFlow="row dense">
-        {data.artist.project.images.map((image: any, i: number) => (
-          <GatsbyImage
-            key={i}
-            objectFit="cover"
-            image={image ? image.gatsbyImageData : ''}
-            alt={image ? image.altText : ''}
-          />
-        ))}
-      </SimpleGrid> */}
+      ) : null}
     </Layout>
   );
 };
@@ -147,6 +125,13 @@ export const data: any = graphql`
       performances {
         remoteId
         images {
+          gatsbyImageData(width: 200, placeholder: BLURRED, quality: 20)
+          altText
+        }
+      }
+      project {
+        remoteId
+        displayImage {
           gatsbyImageData(width: 200, placeholder: BLURRED, quality: 20)
           altText
         }

@@ -9,11 +9,14 @@ import {
   Button,
   Flex,
   Link,
-  useColorModeValue
+  useColorModeValue,
+  HStack,
+  Stack
 } from '@chakra-ui/react';
 import { Layout, Seo } from '../components';
 import { graphql, useStaticQuery } from 'gatsby';
 import { CreateFriendlyUrl } from '../helpers';
+import { GatsbyImage } from 'gatsby-plugin-image';
 
 const PerformancesPage = () => {
   const data: any = useStaticQuery(graphql`
@@ -36,6 +39,14 @@ const PerformancesPage = () => {
           profiles {
             name
             remoteId
+          }
+          images {
+            gatsbyImageData(width: 500, height: 500)
+            localFile {
+              childImageSharp {
+                gatsbyImageData(width: 500)
+              }
+            }
           }
         }
       }
@@ -69,66 +80,84 @@ const PerformancesPage = () => {
   return (
     <Layout>
       <Seo title="Performances" />
-      <Heading
-        as={Text}
-        size="xl"
-        fontWeight="bold"
-        color="#E81D77"
-        textAlign={['center', 'center', 'left', 'left']}
-      >
-        Upcoming Performances
-      </Heading>
-      <SimpleGrid columns={[1, 1, 3]} spacing={1}>
-        {data.activities.nodes.map((event: any) => {
-          return (
-            <Box width="350px" mx="auto" rounded="lg" shadow="md" maxW="2xl">
-              <Box p={2}>
-                <Box>
-                  <chakra.span
-                    fontSize="sm"
-                    color={useColorModeValue('gray.600', 'gray.300')}
-                  ></chakra.span>
-                  <Link
-                    display="block"
-                    // color={useColorModeValue('gray.800', 'white')}
-                    fontWeight="bold"
-                    fontSize="2xl"
-                    mt={2}
-                    _hover={{ color: 'gray.600', textDecor: 'underline' }}
-                    href={`/performance/${CreateFriendlyUrl(
-                      '',
-                      event.remoteId
-                    )}`}
+      <Stack spacing={2}>
+        <Heading
+          as={Text}
+          size="xl"
+          fontWeight="bold"
+          color="#E81D77"
+          textAlign={['center', 'center', 'left', 'left']}
+        >
+          Performances
+        </Heading>
+        <SimpleGrid columns={[1, 1, 3]} spacing={4}>
+          {data.activities.nodes.map((event: any, i: number) => {
+            return (
+              <div>
+                <Link
+                  // color={useColorModeValue('gray.800', 'white')}
+                  display="block"
+                  href={`/performance/${CreateFriendlyUrl('', event.remoteId)}`}
+                  style={{ textDecoration: 'none' }}
+                  _hover={{
+                    textDecoration: 'none',
+                    bg: useColorModeValue('pink.100', 'pink.300')
+                  }}
+                >
+                  <Box
+                    height="auto"
+                    width="auto"
+                    mx="auto"
+                    rounded="lg"
+                    shadow="md"
+                    maxW="2xl"
+                    key={i}
                   >
-                    {event.title}
-                  </Link>
-                </Box>
-
-                <Box mt={4}>
-                  <Flex dir="row" alignItems="center" justify="space-between">
-                    <Button>
-                      <Link href={event.videoUrl}>View Recording</Link>
-                    </Button>
-                    {event.profiles.length > 0 && (
-                      <Link
-                        target="_blank"
-                        href={`/artist/${CreateFriendlyUrl(
-                          event.profiles[0].name,
-                          event.profiles[0].remoteId
-                        )}`}
-                        fontWeight="bold"
-                      >
-                        {event.profiles[0].name}
-                      </Link>
-                    )}
-                  </Flex>
-                </Box>
-              </Box>
-            </Box>
-          );
-        })}
-      </SimpleGrid>
-
+                    <Box p={6}>
+                      <Box>
+                        <Heading
+                          fontSize="xl"
+                          color="#E81D77"
+                          fontWeight="bold"
+                          textAlign={['center', 'center', 'left', 'left']}
+                        >
+                          {event.title}
+                        </Heading>
+                        {event.profiles.length > 0 && (
+                          <Link
+                            target="_blank"
+                            href={`/artist/${CreateFriendlyUrl(
+                              event.profiles[0].name,
+                              event.profiles[0].remoteId
+                            )}`}
+                            fontWeight="bold"
+                            size="md"
+                          >
+                            {event.profiles[0].name}
+                          </Link>
+                        )}
+                        <GatsbyImage
+                          objectFit="cover"
+                          image={
+                            event.images &&
+                            event.images[0].localFile.childImageSharp
+                              ? event.images[0].localFile.childImageSharp
+                                  .gatsbyImageData
+                              : ''
+                          }
+                          alt={
+                            event.images ? event.images[0].altText : event.title
+                          }
+                        />
+                      </Box>
+                    </Box>
+                  </Box>
+                </Link>
+              </div>
+            );
+          })}
+        </SimpleGrid>
+      </Stack>
       <Divider />
     </Layout>
   );

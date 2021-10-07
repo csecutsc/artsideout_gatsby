@@ -60,41 +60,41 @@ const InstallationTemplate = ({ data }: PropType) => {
   return (
     <Layout>
       <Seo title={data.installation.title} />
-      <Heading
-        as={Text}
-        size="xl"
-        fontWeight="bold"
-        color="#E81D77"
-        textAlign={['center', 'center', 'left', 'left']}
-      >
-        {data.installation.title}
-      </Heading>
-
-      <Heading
-        as={Text}
-        size="lg"
-        fontWeight="bold"
-        textAlign={['center', 'center', 'left', 'left']}
-      >
-        <Link
-          target="_blank"
-          href={`/artist/${CreateFriendlyUrl(
-            data.installation.profiles[0].name,
-            data.installation.profiles[0].remoteId
-          )}`}
+      <Stack spacing={2}>
+        <Heading
+          as={Text}
+          size="xl"
+          fontWeight="bold"
+          color="#E81D77"
+          textAlign={['center', 'center', 'left', 'left']}
         >
-          {data.installation.profiles[0].name}
-        </Link>
-      </Heading>
+          {data.installation.title}
+        </Heading>
 
-      <Grid templateColumns="repeat(4, 1fr)" gap={4}>
-        <GridItem rowSpan={2} colSpan={2}>
-          {images.length !== 0 ? (
-            <ImageGallery items={images} showIndex={true} lazyLoad={true} />
-          ) : null}
-        </GridItem>
+        <Heading
+          as={Text}
+          size="lg"
+          fontWeight="bold"
+          textAlign={['center', 'center', 'left', 'left']}
+        >
+          <Link
+            target="_blank"
+            href={`/artist/${CreateFriendlyUrl(
+              data.installation.profiles[0].name,
+              data.installation.profiles[0].remoteId
+            )}`}
+          >
+            {data.installation.profiles[0].name}
+          </Link>
+        </Heading>
 
-        <GridItem colSpan={2}>
+        <SimpleGrid columns={[1, 2, 2]}>
+          <Box>
+            {images.length !== 0 ? (
+              <ImageGallery items={images} showIndex={true} lazyLoad={true} />
+            ) : null}
+          </Box>
+
           <Box>
             <Stack direction="column" p={4}>
               <Divider orientation="vertical" />
@@ -103,8 +103,8 @@ const InstallationTemplate = ({ data }: PropType) => {
               </MDXRenderer>
             </Stack>
           </Box>
-        </GridItem>
-      </Grid>
+        </SimpleGrid>
+      </Stack>
     </Layout>
   );
 };
