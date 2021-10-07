@@ -10,6 +10,15 @@ module.exports = {
     PARALLEL_SOURCING: true
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: 'UA-209680097-1',
+        // this option places the tracking script into the head of the DOM
+        head: true
+        // other options
+      }
+    },
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
     {
@@ -66,25 +75,6 @@ module.exports = {
       resolve: `gatsby-plugin-disqus`,
       options: {
         shortname: `your-disqus-shortname`
-      }
-    },
-    {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        // The property ID; the tracking code won't be generated without it
-        trackingId: 'G-51NP257R94',
-        // Defines where to place the tracking script - `true` in the head and `false` in the body
-        head: false,
-        // Setting this parameter is also optional
-        respectDNT: true,
-        // Avoids sending pageview hits from custom paths
-        exclude: ['/preview/**', '/do-not-track/me/too/'],
-        // Delays sending pageview hits on route update (in milliseconds)
-        pageTransitionDelay: 0,
-        // Defers execution of google analytics script after page load
-        defer: false,
-        // defaults to false
-        enableWebVitalsTracking: true
       }
     },
     '@chakra-ui/gatsby-plugin',
