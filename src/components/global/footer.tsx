@@ -50,9 +50,13 @@ const Footer = () => {
   {
     "url": "https://docs.google.com/uc?export=open&id=1OtD_SSycLd5OdE5j1M31Md2J1gza3ujx",
     "title": "Ryan Bucao"
+  },
+  {
+    "url": "https://docs.google.com/uc?export=open&id=12E3wUWBqmZuL4RgfV69MlEjRQ5ZG2NJH",
+    "title": "Grant Caven - Dream That Could Be"
   }])
 
-  const [index, setIndex] = useState(Math.ceil(Math.random() * 4))
+  const [index, setIndex] = useState(Math.ceil(Math.random() * 5))
   console.log(index)
   return (
     <Box
