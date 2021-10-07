@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { graphql, navigate } from 'gatsby';
+import { graphql, navigate, Link as GatsbyLink } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { SimpleGrid, Text, Heading, Link, Flex } from '@chakra-ui/react';
@@ -8,6 +8,7 @@ import Layout from '../components/layout';
 import Seo from '../components/seo';
 import PropTypes from 'prop-types';
 import { ProfileData } from '../types/PrimaryTypes';
+import { CreateFriendlyUrl } from '../helpers';
 
 interface PropType {
   data: {
@@ -71,7 +72,7 @@ const ArtistTemplate = ({ data }: PropType) => {
         })}
       </Flex>
 
-      {data.artist.installations ? (
+      {data.artist.installations.length > 0 ? (
         <div>
           <Heading
             as={Text}
@@ -84,16 +85,80 @@ const ArtistTemplate = ({ data }: PropType) => {
           </Heading>
 
           <SimpleGrid columns={[2, null, 3]} autoFlow="row dense">
-            {data.artist.installations.map((data: any, i: number) =>
-              data.images.map((image: any, i: number) => (
+            {data.artist.installations.map((data: any, i: number) => (
+              <Link
+                as={GatsbyLink}
+                to={`/installation/${CreateFriendlyUrl(
+                  data.title,
+                  data.remoteId
+                )}`}
+              >
                 <GatsbyImage
                   key={i}
                   objectFit="cover"
-                  image={image ? image.gatsbyImageData : ''}
-                  alt={image ? image.altText : ''}
+                  image={
+                    data.images.length > 0 ? data.images[0].gatsbyImageData : ''
+                  }
+                  alt={data.images.length > 0 ? data.images[0].altText : ''}
                 />
-              ))
-            )}
+              </Link>
+            ))}
+          </SimpleGrid>
+        </div>
+      ) : null}
+
+      {data.artist.performances.length > 0 ? (
+        <div>
+          <Heading
+            as={Text}
+            size="lg"
+            fontWeight="bold"
+            color="#E81D77"
+            textAlign={['center', 'center', 'left', 'left']}
+          >
+            Performances and Workshops
+          </Heading>
+
+          <SimpleGrid columns={[2, null, 3]} autoFlow="row dense">
+            {data.artist.performances.map((data: any, i: number) => {
+              if (data.performanceType == 'WORKSHOP') {
+                return (
+                  <Link
+                    as={GatsbyLink}
+                    to={`/workshop/${CreateFriendlyUrl('', data.remoteId)}`}
+                  >
+                    <GatsbyImage
+                      key={i}
+                      objectFit="cover"
+                      image={
+                        data.images.length > 0
+                          ? data.images[0].gatsbyImageData
+                          : ''
+                      }
+                      alt={data.images.length > 0 ? data.images[0].altText : ''}
+                    />
+                  </Link>
+                );
+              } else {
+                return (
+                  <Link
+                    as={GatsbyLink}
+                    to={`/performance/${CreateFriendlyUrl('', data.remoteId)}`}
+                  >
+                    <GatsbyImage
+                      key={i}
+                      objectFit="cover"
+                      image={
+                        data.images.length > 0
+                          ? data.images[0].gatsbyImageData
+                          : ''
+                      }
+                      alt={data.images.length > 0 ? data.images[0].altText : ''}
+                    />
+                  </Link>
+                );
+              }
+            })}
           </SimpleGrid>
         </div>
       ) : null}
@@ -124,6 +189,7 @@ export const data: any = graphql`
       }
       performances {
         remoteId
+        performanceType
         images {
           gatsbyImageData(width: 200, placeholder: BLURRED, quality: 20)
           altText
@@ -131,6 +197,7 @@ export const data: any = graphql`
       }
       project {
         remoteId
+        projectType
         displayImage {
           gatsbyImageData(width: 200, placeholder: BLURRED, quality: 20)
           altText

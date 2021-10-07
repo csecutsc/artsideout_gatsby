@@ -12,7 +12,8 @@ import {
   Box,
   Grid,
   GridItem,
-  Link
+  Link,
+  AspectRatio
 } from '@chakra-ui/react';
 import ImageGallery from 'react-image-gallery';
 
@@ -39,7 +40,7 @@ import { CreateFriendlyUrl } from '../helpers';
 
 interface PropType {
   data: {
-    installation: InstallationData;
+    installation: any;
   };
 }
 
@@ -97,6 +98,11 @@ const InstallationTemplate = ({ data }: PropType) => {
 
           <Box>
             <Stack direction="column" p={4}>
+              {data.installation.videoUrl ? (
+                <AspectRatio ratio={16 / 9}>
+                  <iframe src={data.installation.videoUrl} />
+                </AspectRatio>
+              ) : null}
               <Divider orientation="vertical" />
               <MDXRenderer>
                 {data.installation.description.markdownNode.childMdx.body}
@@ -119,6 +125,7 @@ export const data: any = graphql`
         altText
         url
       }
+      videoUrl
       description {
         markdownNode {
           childMdx {
